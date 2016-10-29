@@ -2,3 +2,4 @@
 Segundo parcial
 
 Hernan Blanco
+Leandro Baldassarre
