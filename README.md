@@ -1,7 +1,7 @@
 # SP_PPS_2016
 Segundo parcial
 
-*Integrante.
+***** ID  IONIC......FDD1CCB0....*****
 
 #	Matias De Salvo
 
@@ -51,5 +51,6 @@ Segundo parcial
 # 	Temas Pendientes.
 
 	*Perfiles , Administrador - Operador -  Usuario.
+	        Solo el administrador debe poder ver el mapa con todos los accidentes en tiempo real, graficos y toda informacion.
 
 	*Encuesta de satisfaccion.
