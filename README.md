@@ -2,3 +2,5 @@
 Segundo parcial
 
 Hernan Blanco
+
+Horacio Dillon
