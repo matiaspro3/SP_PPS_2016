@@ -29,45 +29,60 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
+    controller: 'menuCtrl'
   })
 
-  .state('app.search', {
-    url: '/search',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/search.html'
-      }
-    }
-  })
 
   .state('app.mapaAccidentes', {
       url: '/MapaAccidentes',
       views: {
         'menuContent': {
-          templateUrl: 'templates/MapaAccidentes.html'
-        }
-      }
-    })
-    .state('app.playlists', {
-      url: '/playlists',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
+          templateUrl: 'templates/MapaAccidentes.html',
+          controller: 'controladorMapaAccidentes'
+
         }
       }
     })
 
-  .state('app.single', {
-    url: '/playlists/:playlistId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
+.state('app.grilla', {
+      url: '/grilla',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/Grilla.html',
+          controller: 'grillaCtrl'
+
+        }
       }
-    }
-  });
+    })
+
+.state('app.login', {
+      url: '/login',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/login.html',
+          controller: 'LoginCtrl'
+
+        }
+      }
+    })
+
+.state('app.registro', {
+      url: '/registro',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/registro.html',
+          controller: 'RegistroCtrl'
+
+        }
+      }
+    })
+
+
+
+
+
+;
+
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('app/registro');
 });
