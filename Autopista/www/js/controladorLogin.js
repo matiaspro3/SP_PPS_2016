@@ -140,10 +140,10 @@ angular.module('starter.controladorLogin', [])
   $scope.login.clave = "123456";
   $scope.login.nombre = "Juan Perez";
 
+  $scope.mensajeLogin = {};
   $scope.mensajeLogin.ver = false;
   $scope.cartelVerificar = false;
   $scope.Registrar = function (){
-    $scope.mensajeLogin = {};
     $scope.mensajeLogin.ver = false;
     try
     {

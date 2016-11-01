@@ -12,9 +12,16 @@ angular.module('starter.controladorMapaAccidentes', [])
       zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
- 
+
+        $scope.marker = new google.maps.Marker({
+          position: latLng,
+          draggable: true,
+          animation: google.maps.Animation.DROP,
+          title: "MARKER"
+        });
+
     $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
- 
+    $scope.marker.setMap($scope.map); 
   }, function(error){
     console.log("Could not get location");
   });
