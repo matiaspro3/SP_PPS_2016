@@ -1,5 +1,11 @@
 <ion-view view-title="Grilla">
-  <ion-content>
-    <h1>Grilla</h1>
+  <ion-content>       
+    <ion-list>
+        <ion-item ng-repeat="accidente in ListadoAccidentes" ng-click="VerMapa(accidente.latitud, accidente.longitud)">
+            <h3>Descripcion: {{accidente.descripcion}}</br></h3>
+            Latitud: {{accidente.latitud}}</br>
+            Longitud: {{accidente.longitud}}</br>                      
+        </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
