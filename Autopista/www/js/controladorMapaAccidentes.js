@@ -1,6 +1,16 @@
 angular.module('starter.controladorMapaAccidentes', [])
 
-.controller('MapaCtrl', function($scope, $state, $cordovaGeolocation, $firebaseArray) {
+.controller('MapaCtrl', function($scope, $state, $cordovaGeolocation,$stateParams, $firebaseArray) {
+  //$lala = $stateParams.longitud;
+  //$state.go('app.mapaAccidentes', { latitud: lat, longitud: longi });
+
+  //console.info("ALASDLSAD...", $lala);
+
+
+
+
+
+
   var FBRef = new Firebase("https://myapp-d5d9c.firebaseio.com/Accidentes");
   $scope.datosFBArray = $firebaseArray(FBRef);
 

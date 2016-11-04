@@ -34,8 +34,12 @@ angular.module('starter', ['ionic','starter.services', 'starter.controllers', 's
 
 
   .state('app.mapaAccidentes', {
-      url: '/MapaAccidentes',
+      url: '/MapaAccidentes/:longitud/:latitud',
+      cache : false,
       views: {
+        params: [
+     'latitud', 'longitud'
+  ],
         'menuContent': {
           templateUrl: 'templates/MapaAccidentes.html',
           controller: 'MapaCtrl'
@@ -95,5 +99,5 @@ angular.module('starter', ['ionic','starter.services', 'starter.controllers', 's
 ;
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('app/registro');
+  $urlRouterProvider.otherwise('app/login');
 });
