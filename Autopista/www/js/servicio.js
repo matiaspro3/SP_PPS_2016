@@ -12,7 +12,16 @@ angular.module('starter.servicio', [])
       return firebase.database().ref().update(objeto);
     }
 
-    function Buscar(ruta, objeto){
-      
+    function Buscar(ruta){
+         var datos = [];
+         var referencia = firebase.database().ref(ruta);
+           referencia.on('child_added', function (snapshot) 
+           {
+                       datos.push(snapshot.val());
+           });
+
+       return datos;
+
+    
     }
 });

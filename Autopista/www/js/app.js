@@ -4,8 +4,8 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic','starter.servicio', 'starter.controllers', 'starter.controladorMapaAccidentes', 
-  'starter.controladorLogin', 'starter.controladorGrilla','starter.controladorAltaAccidente', 'ngCordova', 'firebase'])
+angular.module('starter', ['ionic','starter.servicio','starter.services', 'starter.controllers', 'starter.controladorMapaAccidentes', 
+  'starter.controladorLogin','starter.controladorEncuesta', 'starter.controladorGrilla','starter.controladorAltaAccidente', 'ngCordova', 'firebase'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -59,6 +59,31 @@ angular.module('starter', ['ionic','starter.servicio', 'starter.controllers', 's
         }
       }
     })
+
+
+.state('app.encuestas', {
+      url: '/Encuestas',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/encuestas.html',
+          controller: 'EncuestaCtrl'
+
+        }
+      }
+    })
+
+
+.state('app.graficos', {
+      url: '/Graficos',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/graficos.html',
+          controller: 'GraficosCtrl'
+
+        }
+      }
+    })
+
 
   .state('app.grilla', {
       url: '/grilla',
