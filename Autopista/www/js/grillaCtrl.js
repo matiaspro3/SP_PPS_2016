@@ -9,7 +9,7 @@ angular.module('starter.controladorGrilla', [])
 
  	$scope.VerMapa = function(lat,long){
 
- 		alert(lat + long);
+ 		$state.go('app.mapaAccidentes',{latitud : lat, longitud: long});
 
  	};
 

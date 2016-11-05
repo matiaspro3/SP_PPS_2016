@@ -6,9 +6,8 @@ angular.module('starter.controladorMapaAccidentes', [])
 
   //console.info("ALASDLSAD...", $lala);
 
-
-
-
+  var latitud = $stateParams.latitud;
+  var longitud = $stateParams.longitud;
 
 
   var FBRef = new Firebase("https://myapp-d5d9c.firebaseio.com/Accidentes");
@@ -18,7 +17,18 @@ angular.module('starter.controladorMapaAccidentes', [])
  
   $cordovaGeolocation.getCurrentPosition(options).then(function(position){
  
-    var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    var latLng;
+
+    if(latitud != "" && longitud != "")
+    {
+      latLng = new google.maps.LatLng(latitud, longitud);
+      //alert("vine de lista");
+    }
+    else
+    {
+      latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      //alert("elegi mapa");
+    }
  
     var mapOptions = {
       center: latLng,

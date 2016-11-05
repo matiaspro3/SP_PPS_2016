@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('menuCtrl', function($scope, $ionicModal, $timeout,$state) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -24,6 +24,13 @@ angular.module('starter.controllers', [])
     $scope.modal.hide();
   };
 
+
+ $scope.IrA = function(estado) {
+  $state.go("app." + estado);
+  };
+
+
+
   // Open the login modal
   $scope.login = function() {
     $scope.modal.show();
@@ -42,14 +49,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
