@@ -33,7 +33,10 @@
           <div class="alert-success" ng-if="verificado == 'no' && cartelVerificar">
             <p style="font-size: 16px;">Email enviado.</p>
           </div>
-          <button class="button button-block button-positive" ng-click="Deslogear()" >Salir</button>
+          <div class="alert-success">
+            <p style="font-size: 16px;">¿Confirma que quiere salir?</p>
+            <button class="button button-block button-positive" ng-click="Deslogear()" >Salir</button>
+          </div>
         </div>
       </div>
     </form>

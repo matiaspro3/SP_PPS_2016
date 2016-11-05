@@ -70,27 +70,17 @@ angular.module('starter', ['ionic','starter.services', 'starter.controllers', 's
       }
     })
 
-.state('app.login', {
-      url: '/login',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/login.html',
-          controller: 'LoginCtrl'
+.state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl'
+})
 
-        }
-      }
-    })
-
-.state('app.registro', {
-      url: '/registro',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/registro.html',
-          controller: 'RegistroCtrl'
-
-        }
-      }
-    })
+.state('registro', {
+  url: '/registro',
+      templateUrl: 'templates/registro.html',
+      controller: 'RegistroCtrl'
+})
 
 
 
@@ -99,5 +89,5 @@ angular.module('starter', ['ionic','starter.services', 'starter.controllers', 's
 ;
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('app/login');
+  $urlRouterProvider.otherwise('/login');
 });

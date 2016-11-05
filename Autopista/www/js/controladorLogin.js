@@ -11,7 +11,7 @@ angular.module('starter.controladorLogin', [])
 
   $scope.mensajeLogin = {};
   $scope.mensajeLogin.ver = false;
-
+  console.info("sarlanga");
   $scope.Logear = function (){
     $scope.mensajeLogin.ver = false;
     $scope.cartelVerificar = false;
@@ -29,7 +29,10 @@ angular.module('starter.controladorLogin', [])
           if (usuario.emailVerified == false)
             $scope.verificado = 'no';
           else
-            $scope.verificado = 'si';
+            {
+              $scope.verificado = 'si';
+              $state.go("app.altaAccidente");
+            }
         });
       }, function (error){
           $timeout(function() {
