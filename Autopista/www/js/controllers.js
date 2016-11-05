@@ -2,15 +2,6 @@ angular.module('starter.controllers', [])
 
 .controller('menuCtrl', function($scope, $ionicModal, $timeout, $state) {
 
-    $scope.usuarioLogeado = firebase.auth().currentUser;
-    $scope.usuario = {};
-    var referencia = firebase.database().ref('usuario/' + $scope.usuarioLogeado.displayName);
-    referencia.on('value', function(snapshot) {
-      $timeout(function() {
-        $scope.usuario = snapshot.val();
-      });
-    });
-
   $scope.Deslogear = function (){
     try
     {

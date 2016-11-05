@@ -1,6 +1,6 @@
 angular.module('starter.controladorLogin', [])
 
-.controller('LoginCtrl', function($scope, $stateParams, $timeout, $state) {
+.controller('LoginCtrl', function($scope, $stateParams, $timeout, $state, Servicio) {
   $scope.logueado = 'no';
   $scope.verificado = 'no';
   $scope.cartelVerificar = false;
@@ -11,7 +11,6 @@ angular.module('starter.controladorLogin', [])
 
   $scope.mensajeLogin = {};
   $scope.mensajeLogin.ver = false;
-  console.info("sarlanga");
   $scope.Logear = function (){
     $scope.mensajeLogin.ver = false;
     $scope.cartelVerificar = false;
@@ -22,7 +21,9 @@ angular.module('starter.controladorLogin', [])
         var usuario = firebase.auth().currentUser;
         var updates = {};
         updates['/usuario/' + usuario.displayName + '/fechaAcceso'] = firebase.database.ServerValue.TIMESTAMP;
-        firebase.database().ref().update(updates);
+        //firebase.database().ref().update(updates);
+
+        Servicio.Editar(updates);
 
         $timeout(function() {
           $scope.logueado = 'si';
@@ -137,7 +138,7 @@ angular.module('starter.controladorLogin', [])
 
 })
 
-.controller('RegistroCtrl', function($scope, $stateParams, $timeout, $state) {
+.controller('RegistroCtrl', function($scope, $stateParams, $timeout, $state, Servicio) {
   $scope.login = {};
   $scope.login.usuario = "jperez@gmail.com";
   $scope.login.clave = "123456";
@@ -153,13 +154,15 @@ angular.module('starter.controladorLogin', [])
       firebase.auth().createUserWithEmailAndPassword($scope.login.usuario, $scope.login.clave)
       .then(function(resultado){
         var fecha = firebase.database.ServerValue.TIMESTAMP;
-        firebase.database().ref('usuario/' + $scope.login.nombre).set({
+        var usuario = {
           correo: $scope.login.usuario,
           nombre: $scope.login.nombre,
           fechaCreacion: fecha,
           fechaAcceso: fecha,
           perfil:"cliente"
-        });
+        };
+        Servicio.Guardar('usuario/' + $scope.login.nombre, usuario);
+
         firebase.auth().signInWithEmailAndPassword($scope.login.usuario, $scope.login.clave).catch(function (error){
 
         }).then( function(resultado){
