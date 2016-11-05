@@ -1,6 +1,6 @@
 angular.module('starter.controladorAltaAccidente', [])
 
-.controller('AltaCtrl', function($scope, $state, $cordovaGeolocation, $firebaseArray,Data) {
+.controller('AltaCtrl', function($scope, $state, $cordovaGeolocation, $firebaseArray, Servicio) {
   
   //esta es mi base de datos donde probe las altas.
   //var FBRef = new Firebase("https://primerfirebase-a52b4.firebaseio.com/Accidentes");
@@ -13,7 +13,7 @@ angular.module('starter.controladorAltaAccidente', [])
     $scope.alta.fecha = "";
     $scope.alta.descripcion = "";
     $scope.alta.usuario = "m.mirotta@gmail.com";
-    $scope.alta.fecha = Data.getFecha();
+    $scope.alta.fecha = Date();
 
 
     $scope.Guardar=function(){
