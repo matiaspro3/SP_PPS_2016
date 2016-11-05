@@ -46,6 +46,10 @@ Segundo parcial
 
 	Mapa  integral de accidentes con filtro por dia/zona. 
 
+· Pablo Igoldi	
+  
+  * Tareas a Realizar.
+
 
 
 # 	Temas Pendientes.
