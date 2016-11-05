@@ -4,7 +4,8 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic','starter.services', 'starter.controllers', 'starter.controladorMapaAccidentes', 'starter.controladorLogin', 'starter.controladorGrilla','starter.controladorAltaAccidente', 'ngCordova', 'firebase'])
+angular.module('starter', ['ionic','starter.servicio', 'starter.controllers', 'starter.controladorMapaAccidentes', 
+  'starter.controladorLogin', 'starter.controladorGrilla','starter.controladorAltaAccidente', 'ngCordova', 'firebase'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -59,7 +60,7 @@ angular.module('starter', ['ionic','starter.services', 'starter.controllers', 's
       }
     })
 
-.state('app.grilla', {
+  .state('app.grilla', {
       url: '/grilla',
       views: {
         'menuContent': {
@@ -70,23 +71,17 @@ angular.module('starter', ['ionic','starter.services', 'starter.controllers', 's
       }
     })
 
-.state('login', {
-    url: '/login',
-    templateUrl: 'templates/login.html',
-    controller: 'LoginCtrl'
-})
+  .state('login', {
+      url: '/login',
+      templateUrl: 'templates/login.html',
+      controller: 'LoginCtrl'
+  })
 
-.state('registro', {
-  url: '/registro',
-      templateUrl: 'templates/registro.html',
-      controller: 'RegistroCtrl'
-})
-
-
-
-
-
-;
+  .state('registro', {
+    url: '/registro',
+        templateUrl: 'templates/registro.html',
+        controller: 'RegistroCtrl'
+  });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
