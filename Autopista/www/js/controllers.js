@@ -8,7 +8,7 @@ angular.module('starter.controllers', [])
       firebase.auth().signOut().catch(function (error){
         console.info("Ha ocurrido un error en Deslogueo(). " + error);
       }).then( function(resultado){
-        $state.go("login");
+        $state.go("app.encuestas");
       });
     }
     catch (error)
