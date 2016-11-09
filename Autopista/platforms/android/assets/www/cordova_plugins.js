@@ -46,6 +46,31 @@ module.exports = [
         "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
         "pluginId": "cordova-plugin-geolocation",
         "runs": true
+    },
+    {
+        "id": "cordova-plugin-inappbrowser.inappbrowser",
+        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "pluginId": "cordova-plugin-inappbrowser",
+        "clobbers": [
+            "cordova.InAppBrowser.open",
+            "window.open"
+        ]
+    },
+    {
+        "id": "cordova-plugin-fcm.FCMPlugin",
+        "file": "plugins/cordova-plugin-fcm/www/FCMPlugin.js",
+        "pluginId": "cordova-plugin-fcm",
+        "clobbers": [
+            "FCMPlugin"
+        ]
+    },
+    {
+        "id": "cordova-plugin-velda-devicefeedback.DeviceFeedback",
+        "file": "plugins/cordova-plugin-velda-devicefeedback/DeviceFeedback.js",
+        "pluginId": "cordova-plugin-velda-devicefeedback",
+        "clobbers": [
+            "window.plugins.deviceFeedback"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -58,7 +83,10 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.3.0",
     "ionic-plugin-keyboard": "2.2.1",
     "cordova-plugin-compat": "1.0.0",
-    "cordova-plugin-geolocation": "2.4.0"
+    "cordova-plugin-geolocation": "2.4.0",
+    "cordova-plugin-inappbrowser": "1.5.0",
+    "cordova-plugin-fcm": "1.1.5",
+    "cordova-plugin-velda-devicefeedback": "0.0.2"
 };
 // BOTTOM OF METADATA
 });

@@ -1,0 +1,30 @@
+<ion-view view-title="Notifique su inconveniente">
+    <ion-content class="">
+        <form id="formAlta" name="formAlta" enctype="multipart/form-data" novalidate >
+            <!-- TIPO -->
+            <label style="color:red; font-size: 30px;" class="item item-input item-stacked-label"><strong>Tipo de Problema</strong></label>
+            <div class="spacer" style="width: 268px; height: 30px;"></div>
+
+            <ion-list class="list">
+                <ion-radio name="tipo" ng-model="alta.tipo" ng-value="'Averia en vehiculo'" required>&nbsp;<i class="icon-left ion-wrench"></i>&nbsp;&nbsp;&nbsp;Avería en su vehiculo</ion-radio>
+                <ion-radio name="tipo" ng-model="alta.tipo" ng-value="'Accidente'"><i class="icon-left ion-alert-circled"></i>&nbsp;&nbsp;Accidente</ion-radio>
+                <ion-radio name="tipo" ng-model="alta.tipo" ng-value="'Animales sueltos'"><i class="icon-left ion-ios-paw"></i>&nbsp;&nbsp;&nbsp;Animales sueltos</ion-radio>
+                <ion-radio name="tipo" ng-model="alta.tipo" ng-value="'Necesidad de Ambulancia'"><i class="icon-left ion-medkit"></i>&nbsp;&nbsp;&nbsp;Necesidad de ambulancia</ion-radio>
+            </ion-list>
+            <div class="spacer" style="width: 268px; height: 100px;"></div>
+            <!-- DIRECCION -->
+            <label class="item item-input">
+                <span class="input-label"><strong>Mensaje</strong></span>
+                <input name="descripcion" type="text" ng-model="alta.descripcion" required>
+            </label>
+            
+            <!-- FECHA-->
+            <!--<label class="item item-input">
+                <span class="input-label"><strong>Fecha</strong></span>
+                <input type="date" class="form-control" name="fecha" id="fecha" ng-model="alta.fecha" required/>
+            </label>
+-->
+            <button class="button button-block button-positive" ng-click="guardarAccidente()" ng-disabled="formAlta.$invalid">Enviar</button>
+        </form>
+    </ion-content>
+</ion-view>

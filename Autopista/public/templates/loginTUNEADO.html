@@ -1,0 +1,63 @@
+<ion-view hide-nav-bar="true" view-title="Login">
+
+ <ion-header-bar class="bar bar-deepblue bar-deepblue-borderbottom">
+    <button ui-sref="app.inicio" class="button button-clear button-deepblue-white"><i class="white-color ion-arrow-left-c"></i></button>
+    <h2 class="title">Login</h2>
+  </ion-header-bar>
+
+
+
+  <ion-content class="has-header has-footer padding full-height text-center">
+
+  <h3 class="sans-pro-light">Ingrese sus datos</h3>
+
+
+   
+      <div class="list" ng-if="logueado == 'no'">
+        <label class="item item-input">
+          <span class="input-label" style="color: blue;font-weight: 900;">Correo</span>
+          <input type="text" ng-model="login.usuario">
+        </label>
+        <label class="item item-input">
+          <span class="input-label"style="color: blue;font-weight: 900;">Contraseña</span>
+          <input type="password" ng-model="login.clave">
+        </label>
+        <div class="padding">
+          <button class="button button-block button-positive" ng-click="Logear()" >Ingresar</button>
+         
+
+
+        </div>
+        <div class="padding">
+          <div class="{{mensajeLogin.estilo}}" ng-if="mensajeLogin.ver" style="text-align:center">
+            <span class="input-label" style="font-size: 16px; color: yellow; width: 100%; max-width: 100%;">{{mensajeLogin.mensaje}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="list" ng-if="logueado == 'si'">
+        <div class="padding">
+          <div class="alert-success" ng-if="verificado == 'no' && !cartelVerificar">
+            <p style="font-size: 16px;color: yellow;">Todavía no has verificado tu cuenta, <br><small><a ng-click="VerificarMail()">haz click aqui</a></small> para recibir el mail.</p>
+          </div>
+          <div class="alert-success" ng-if="verificado == 'no' && cartelVerificar">
+            <p style="font-size: 16px;color: yellow;">Email enviado.</p>
+          </div>
+          <div class="alert-success">
+            <p style="font-size: 16px;color: yellow;">¿Confirma que quiere salir?</p>
+            <button class="button button-block button-positive" ng-click="Deslogear()" >Salir</button>
+          </div>
+        </div>
+      </div>
+   
+  </ion-content>
+
+<!--
+agregarle un disable para q no toque muchas veces. o algun icono de giro .
+-->
+
+<ion-footer-bar class="bar bar-deepblue bar-deepblue-bordertop pointer" ng-click="Resetear()">
+    <h1 class="title sans-pro-light">Olvide mi contraseña</h1>
+  </ion-footer-bar>
+
+
+  </ion-view>

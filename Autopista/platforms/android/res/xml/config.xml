@@ -58,4 +58,15 @@
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashScreen" value="screen" />
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+    </feature>
+    <feature name="FCMPlugin">
+        <param name="android-package" value="com.gae.scaffolder.plugin.FCMPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="DeviceFeedback">
+        <param name="android-package" value="cz.Velda.cordova.plugin.devicefeedback.DeviceFeedback" />
+        <param name="onload" value="true" />
+    </feature>
 </widget>

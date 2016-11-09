@@ -1,0 +1,33 @@
+[debug] ----------------------------------------------------------------------
+[debug] Command:      C:\Program Files\nodejs\node.exe C:\Users\MATYAZ\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase init
+[debug] CLI Version:  3.0.8
+[debug] Platform:     win32
+[debug] Node Version: v4.5.0
+[debug] Time:         Tue Nov 08 2016 21:44:49 GMT-0300 (Hora estándar de Argentina)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[debug] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase"]
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\MATYAZ\Desktop\Practica\Autopista
+
+Before we get started, keep in mind:
+
+  * You are initializing in an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects 
+[debug] <<< HTTP RESPONSE 200
