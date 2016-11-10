@@ -1,29 +1,22 @@
 /* Empty. Add your own CSS if you like */
-a:hover{
-	cursor:pointer;
+.overlay  
+{
+    position: fixed;
+    z-index: 98;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    filter: alpha(opacity=80); 
+    opacity: 0.8; 
 }
-
-/*Contenedores de error o correcto.*/
-.alert-success {
-  color: #3c763d;
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
-}
-.alert-success hr {
-  border-top-color: #c9e2b3;
-}
-.alert-success .alert-link {
-  color: #2b542c;
-}
-
-.alert-danger {
-  color: #a94442;
-  background-color: #f2dede;
-  border-color: #ebccd1;
-}
-.alert-danger hr {
-  border-top-color: #e4b9c0;
-}
-.alert-danger .alert-link {
-  color: #843534;
+.overlayContent
+{
+    z-index: 99;
+    margin: 50% auto;
+    width: 60%;
+    padding: 5%; 
+    background-color: #FFFFFF;
+    border:1px solid #000;
+    opacity: 1; 
 }

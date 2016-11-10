@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "486553558961",
+    "firebase_url": "https://autopista-b6678.firebaseio.com",
+    "project_id": "autopista-b6678",
+    "storage_bucket": "autopista-b6678.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:486553558961:android:2dfa6e997b30f51e",
+        "android_client_info": {
+          "package_name": "com.ionicframework.autopista613514"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "486553558961-rm3om9tb0ojtc6s85vi63bbbcgseh4qv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUEU5ha4xscxk9lPBxCTJ2L-fy6Te-Zco"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

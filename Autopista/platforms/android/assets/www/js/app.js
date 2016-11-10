@@ -4,7 +4,8 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic','starter.services', 'starter.controllers', 'starter.controladorMapaAccidentes', 'starter.controladorLogin', 'starter.controladorGrilla','starter.controladorAltaAccidente', 'ngCordova', 'firebase'])
+angular.module('starter', ['ionic','starter.servicio','starter.services','starter.pushNotification', 'starter.controllers', 'starter.controladorMapaAccidentes', 
+  'starter.controladorLogin','starter.controladorGraficos','starter.controladorEncuesta', 'starter.controladorGrilla','starter.controladorAltaAccidente', 'ngCordova', 'firebase'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -31,7 +32,14 @@ angular.module('starter', ['ionic','starter.services', 'starter.controllers', 's
     templateUrl: 'templates/menu.html',
     controller: 'menuCtrl'
   })
-
+.state('app.inicio', {
+    url: '/inicio',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/inicio.html'
+      }
+    }
+  })
 
   .state('app.mapaAccidentes', {
       url: '/MapaAccidentes/:longitud/:latitud',
@@ -59,7 +67,32 @@ angular.module('starter', ['ionic','starter.services', 'starter.controllers', 's
       }
     })
 
-.state('app.grilla', {
+
+.state('app.encuestas', {
+      url: '/Encuestas',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/encuestas.html',
+          controller: 'EncuestaCtrl'
+
+        }
+      }
+    })
+
+
+.state('app.graficos', {
+      url: '/Graficos',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/graficos.html',
+          controller: 'GraficosCtrl'
+
+        }
+      }
+    })
+
+
+  .state('app.grilla', {
       url: '/grilla',
       views: {
         'menuContent': {
@@ -70,34 +103,18 @@ angular.module('starter', ['ionic','starter.services', 'starter.controllers', 's
       }
     })
 
-.state('app.login', {
+  .state('login', {
       url: '/login',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/login.html',
-          controller: 'LoginCtrl'
+      templateUrl: 'templates/login.html',
+      controller: 'LoginCtrl'
+  })
 
-        }
-      }
-    })
-
-.state('app.registro', {
-      url: '/registro',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/registro.html',
-          controller: 'RegistroCtrl'
-
-        }
-      }
-    })
-
-
-
-
-
-;
+  .state('registro', {
+    url: '/registro',
+        templateUrl: 'templates/registro.html',
+        controller: 'RegistroCtrl'
+  });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('app/login');
+  $urlRouterProvider.otherwise('app/inicio');
 });

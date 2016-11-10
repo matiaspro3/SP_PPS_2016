@@ -1,56 +1,45 @@
 angular.module('starter.controllers', [])
 
-.controller('menuCtrl', function($scope, $ionicModal, $timeout,$state) {
+.controller('menuCtrl', function($scope, $ionicModal, $timeout, $state) {
+  try
+  {
+    if (firebase.auth().currentUser != null)
+    {
+      var usuarioLogeado = firebase.auth().currentUser;
+      $scope.usuario = {};
+      var referencia = firebase.database().ref('usuario/' + usuarioLogeado.displayName);
+      referencia.on('value', function(snapshot) {
+        $timeout(function() {
+          $scope.usuario = snapshot.val();
+        });
+      });
+    }
+    else
+    {
+      $state.go("app.inicio");
+    }
+  }
+  catch (error)
+  {
+    console.info("Ha ocurrido un error en Deslogueo(). " + error);
+  }
 
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
-  // Form data for the login modal
-  $scope.loginData = {};
-
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
+  $scope.Deslogear = function (){
+    try
+    {
+      firebase.auth().signOut().catch(function (error){
+        console.info("Ha ocurrido un error en Deslogueo(). " + error);
+      }).then( function(resultado){
+        $state.go("app.encuestas");
+      });
+    }
+    catch (error)
+    {
+      console.info("Ha ocurrido un error en Deslogueo(). " + error);
+    }
   };
 
-
- $scope.IrA = function(estado) {
-  $state.go("app." + estado);
+  $scope.IrA = function(estado) {
+    $state.go("app." + estado);
   };
-
-
-
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };
-
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-  };
-})
-
-.controller('PlaylistsCtrl', function($scope) {
-
-})
-
-.controller('PlaylistCtrl', function($scope, $stateParams) {
 });
