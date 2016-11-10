@@ -3,6 +3,7 @@ angular.module('starter.servicio', [])
     this.Nombre = "Servicio Firebase";
     this.Guardar = Guardar;
     this.Editar = Editar;
+    this.Buscar = Buscar;
 
     function Guardar(ruta, objeto){
       //return firebase.database().ref(ruta).set(objeto);

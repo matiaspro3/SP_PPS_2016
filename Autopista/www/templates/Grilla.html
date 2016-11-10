@@ -1,11 +1,15 @@
 <ion-view view-title="Grilla">
   <ion-content>       
     <ion-list>
-        <ion-item ng-repeat="accidente in ListadoAccidentes" ng-click="VerMapa(accidente.latitud, accidente.longitud)">
-            <h3>Descripcion: {{accidente.descripcion}}</br></h3>
-            Latitud: {{accidente.latitud}}</br>
-            Longitud: {{accidente.longitud}}</br>                      
-        </ion-item>
+		  <ion-item ng-repeat="accidente in ListadoAccidentes | filter:{ activo: true }" ng-click="VerMapa(accidente.latitud, accidente.longitud)">
+		      {{accidente.descripcion}}</br>
+          {{accidente.tipo}}</br>
+          {{accidente.fecha}}</br>
+          {{accidente.$$hashKey}}</br>
+		  <ion-option-button class="ion-minus-circled" ng-click="Solucionar(accidente)" ng-if="usuario.perfil != 'cliente'">
+          Solucionar
+      </ion-option-button>
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>
