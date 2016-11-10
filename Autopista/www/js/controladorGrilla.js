@@ -20,7 +20,8 @@ angular.module('starter.controladorGrilla', [])
 
  		accidente.activo = false;
  		var updates = {};
-        updates['/Accidentes/' + accidente.$$hashKey + accidente.activo ] = false;
+        updates['/Accidentes/' + accidente.$$hashKey +"/activo" ] = false;
+        console.info(updates);
         Servicio.Editar(updates);
  		$state.go('app.grilla');
 
