@@ -1,6 +1,6 @@
 angular.module('starter.controladorAltaAccidente', [])
 
-.controller('AltaCtrl', function($scope, $state, $cordovaGeolocation, $firebaseArray, Servicio) {
+.controller('AltaCtrl', function($scope, $state, $cordovaGeolocation, $firebaseArray, Servicio, PushNotificationService) {
   
   //esta es mi base de datos donde probe las altas.
   //var FBRef = new Firebase("https://primerfirebase-a52b4.firebaseio.com/Accidentes"); 
@@ -24,7 +24,8 @@ angular.module('starter.controladorAltaAccidente', [])
             console.log("Geolocation is not supported by this browser.");
         }
           alert("La carga se realizó con éxito");
-          console.log($scope.alta);
+          PushNotificationService.enviarPushNotification($scope.alta);
+          //console.log($scope.alta);
     }
      $scope.showPosition = function(position) {
         setTimeout(function() {        
