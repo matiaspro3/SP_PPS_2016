@@ -10,7 +10,7 @@ angular.module('starter.controladorMapaAccidentes', [])
   var longitud = $stateParams.longitud;
 
 
-  var FBRef = new Firebase("https://myapp-d5d9c.firebaseio.com/Accidentes");
+  var FBRef = new Firebase("https://autopista-b6678.firebaseio.com/Accidentes");
   $scope.datosFBArray = $firebaseArray(FBRef);
 
    var options = {timeout: 10000, enableHighAccuracy: true};
