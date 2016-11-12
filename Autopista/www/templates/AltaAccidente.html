@@ -24,7 +24,12 @@
                 <input type="date" class="form-control" name="fecha" id="fecha" ng-model="alta.fecha" required/>
             </label>
 -->
-            <button class="button button-block button-positive" ng-click="guardarAccidente()" ng-disabled="formAlta.$invalid">Enviar</button>
+            <button class="button button-block button-positive" ng-click="guardarAccidente()" ng-disabled="formAlta.$invalid">Enviar</button>                
         </form>
+        <div class="overlay" ng-show="cargando">
+      <div class="overlayContent">
+        <ion-spinner icon="circles"></ion-spinner><span style="font-size:26px; color:#000000">Enviando Accidente..</span>
+      </div>
+    </div>
     </ion-content>
 </ion-view>

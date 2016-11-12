@@ -1,6 +1,6 @@
 angular.module('starter.controladorAltaAccidente', [])
 
-.controller('AltaCtrl', function($scope, $state, $cordovaGeolocation, $firebaseArray, Servicio, PushNotificationService) {
+.controller('AltaCtrl', function($timeout,$scope, $state, $cordovaGeolocation, $firebaseArray, Servicio, PushNotificationService, FactoryUsuario) {
   
   //esta es mi base de datos donde probe las altas.
   //var FBRef = new Firebase("https://primerfirebase-a52b4.firebaseio.com/Accidentes"); 
@@ -10,29 +10,41 @@ angular.module('starter.controladorAltaAccidente', [])
     $scope.alta.tipo = "";
     $scope.alta.fecha = "";
     $scope.alta.descripcion = "";
-    $scope.alta.usuario = firebase.auth().currentUser.email;
-    $scope.alta.fecha = Date();
+    $scope.alta.usuario = FactoryUsuario.Logueado;
+    $scope.alta.fecha = new Date().valueOf();
     $scope.alta.activo = true;
+    $scope.alta.id = $scope.alta.usuario.nombre+$scope.alta.fecha;
+    $scope.cargando = false;
 
 
     $scope.guardarAccidente=function(){
         //Recupero las coordenadas
+
+        $scope.cargando = true;
+
+         $timeout(function() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition($scope.showPosition);
+           // alert("La carga se realizó con éxito");
+
         } 
-        else {
+        else 
+        {
+            navigator.geolocation.getCurrentPosition($scope.showPosition);
             console.log("Geolocation is not supported by this browser.");
         }
-          alert("La carga se realizó con éxito");
+
           PushNotificationService.enviarPushNotification($scope.alta);
-          //console.log($scope.alta);
+          $scope.cargando = false;
+        }, 1000);
     }
      $scope.showPosition = function(position) {
         setTimeout(function() {        
+          console.log($scope.alta);
             $scope.alta.latitud=position.coords.latitude;
             $scope.alta.longitud=position.coords.longitude;
 
-            Servicio.Guardar("/Accidentes",$scope.alta);
+            Servicio.Guardar("/Accidentes/"+$scope.alta.usuario.nombre+$scope.alta.fecha+"/",$scope.alta);
         });
     };
   
