@@ -1,6 +1,6 @@
 angular.module('starter.controladorEncuesta', [])
 
-.controller('EncuestaCtrl', function($scope, $state, $cordovaGeolocation, $firebaseArray,Data,Servicio, $timeout) {
+.controller('EncuestaCtrl', function($scope, $state, $cordovaGeolocation, $firebaseArray,Data,Servicio, $timeout,FactoryUsuario) {
     
   $scope.encuesta = {};
   
@@ -12,17 +12,9 @@ angular.module('starter.controladorEncuesta', [])
     $scope.encuesta.respuestas.loRecomendaria = "";
     $scope.encuesta.respuestas.sugerencia = "";
 
-    $scope.encuesta.fecha = Date();
-    $scope.encuesta.usuario = {};
-
-    var usuarioLogeado = firebase.auth().currentUser;
-    var referencia = firebase.database().ref('usuario/' + usuarioLogeado.displayName);
-    referencia.on('value', function(snapshot) {
-    $timeout(function() {
-          $scope.encuesta.usuario = snapshot.val();    
-        });
-    });    
-  
+    //$scope.encuesta.fecha = Date();
+    $scope.encuesta.usuario = FactoryUsuario.Logueado;
+ 
     $scope.guardarEncuesta=function(){    
         try{
             console.log($scope.encuesta);
