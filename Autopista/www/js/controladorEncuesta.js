@@ -20,9 +20,10 @@ angular.module('starter.controladorEncuesta', [])
             console.log($scope.encuesta);
             Servicio.Guardar("Encuestas/" + $scope.encuesta.usuario.nombre +"/" + String($scope.encuesta.fecha) +"/" ,$scope.encuesta);
           firebase.auth().signOut().catch(function (error){
-          console.info("Ha ocurrido un error en la encuesta. " + error);
-          }).then( function(resultado){
-            $state.go("app.inicio");
+              console.info("Ha ocurrido un error en la encuesta. " + error);
+              }).then( function(resultado){
+                 ionic.Platform.exitApp();
+                  //$state.go("app.inicio");
           });
         }catch(error)
       {
