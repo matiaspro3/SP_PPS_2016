@@ -5,7 +5,7 @@ angular.module('starter.controladorLogin', [])
   {
     $scope.login = {};
     $scope.login.usuario = "m.mirotta@gmail.com";
-    $scope.login.clave = "";
+    $scope.login.clave = "123456";
 
     $scope.mensajeLogin = {};
     $scope.mensajeLogin.ver = false;
@@ -64,7 +64,8 @@ angular.module('starter.controladorLogin', [])
               $scope.verificado = 'si';
               $state.go("app.altaAccidente");
             }
-        });
+          $scope.cargando = false;
+        }, 1000);
       }, function (error){
           $timeout(function() {
             switch (error.code)
