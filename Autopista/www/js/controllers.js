@@ -1,23 +1,11 @@
 angular.module('starter.controllers', [])
 
-.controller('menuCtrl', function($scope, $ionicModal, $timeout, $state, Servicio) {
+.controller('menuCtrl', function($scope, $ionicModal, $timeout, $state, Servicio, FactoryUsuario) {
   try
   {
     if (firebase.auth().currentUser != null)
     {
-      var usuarioLogeado = firebase.auth().currentUser;
-      $scope.usuario = {};
-      
-      var referencia = firebase.database().ref('usuario/' + usuarioLogeado.displayName);
-      referencia.on('value', function(snapshot) {
-        $timeout(function() {
-          $scope.usuario = snapshot.val();
-        });
-      });
-
-
-
-
+      $scope.usuario = FactoryUsuario.Logueado;
     }
     else
     {

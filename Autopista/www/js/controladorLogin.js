@@ -1,6 +1,6 @@
 angular.module('starter.controladorLogin', [])
 
-.controller('LoginCtrl', function($scope, $stateParams, $timeout, $state, Servicio) {
+.controller('LoginCtrl', function($scope, $stateParams, $timeout, $state, Servicio, FactoryUsuario) {
   try
   {
     $scope.login = {};
@@ -54,6 +54,16 @@ angular.module('starter.controladorLogin', [])
         var updates = {};
         updates['/usuario/' + usuario.displayName + '/fechaAcceso'] = firebase.database.ServerValue.TIMESTAMP;
         Servicio.Editar(updates);
+
+        Servicio.Cargar('/usuario/' + usuario.displayName).on('value',
+          function(respuesta) {
+            FactoryUsuario.Logueado = respuesta.val();
+          },
+          function(error) {
+            // body...
+          }
+
+        );
 
         $timeout(function() {
           $scope.logueado = 'si';
@@ -169,7 +179,7 @@ angular.module('starter.controladorLogin', [])
 
 })
 
-.controller('RegistroCtrl', function($scope, $stateParams, $timeout, $state, Servicio) {
+.controller('RegistroCtrl', function($scope, $stateParams, $timeout, $state, Servicio, FactoryUsuario) {
   $scope.login = {};
   $scope.login.usuario = "jperez@gmail.com";
   $scope.login.clave = "123456";
@@ -201,7 +211,18 @@ angular.module('starter.controladorLogin', [])
         }).then( function(resultado){
           firebase.auth().currentUser.updateProfile({
             displayName: $scope.login.nombre,
-          }).then(function() {  
+          }).then(function() { 
+
+            Servicio.Cargar('/usuario/' + usuario.displayName).on('value',
+              function(respuesta) {
+                FactoryUsuario.Logueado = respuesta.val();
+              },
+              function(error) {
+                // body...
+              }
+
+            );
+
             $state.go("login");
           }, function(error) {
             // An error happened.
