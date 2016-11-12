@@ -17,7 +17,7 @@ angular.module('starter.servicio', [])
     function Buscar(ruta){
          var datos = [];
          var referencia = firebase.database().ref(ruta);
-           referencia.on('child_added', function (snapshot) 
+           referencia.on('value', function (snapshot) 
            {
                        datos.push(snapshot.val());
            });
@@ -30,7 +30,7 @@ angular.module('starter.servicio', [])
 
     function Cargar(ruta){
       
-         var referencia = firebase.database().ref(ruta);
+        return firebase.database().ref(ruta);
           
     
     }
