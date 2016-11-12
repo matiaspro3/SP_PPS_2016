@@ -31,16 +31,7 @@ angular.module('starter.servicio', [])
     function Cargar(ruta){
       
          var referencia = firebase.database().ref(ruta);
-           referencia.on('value', function (snapshot) 
-           {
-            $timeout(function() {
-              return  snapshot.val();
-                     });
-
-           });
-
-     ;
-
+          
     
     }
 
