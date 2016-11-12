@@ -53,6 +53,13 @@
 			No</ion-radio>			
   		</ion-item>
 
+            <ion-item>
+           <label class="item item-input">
+                <span class="input-label"><strong>Sugerencias</strong></span>
+                <input name="descripcion" type="text" ng-model="encuesta.respuestas.sugerencia" >
+            </label>      
+      </ion-item>
+
      </ion-list>
 
      <button class="button button-block button-positive" ng-click="guardarEncuesta()">Enviar respuestas</button>
