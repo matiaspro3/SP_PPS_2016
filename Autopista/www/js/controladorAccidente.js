@@ -10,10 +10,10 @@ angular.module('starter.controladorAltaAccidente', [])
     $scope.alta.tipo = "";
     $scope.alta.fecha = "";
     $scope.alta.descripcion = "";
-    $scope.alta.usuario = FactoryUsuario.Logueado;
+    $scope.alta.usuario = "";
     $scope.alta.fecha = new Date().valueOf();
-    $scope.alta.activo = true;
-    $scope.alta.id = $scope.alta.usuario.nombre+$scope.alta.fecha;
+    $scope.alta.activo = true;    
+    $scope.alta.id = "";
     $scope.cargando = false;
 
 
@@ -21,6 +21,8 @@ angular.module('starter.controladorAltaAccidente', [])
         //Recupero las coordenadas
 
         $scope.cargando = true;
+        $scope.alta.usuario = FactoryUsuario.Logueado;
+        $scope.alta.id = $scope.alta.usuario.nombre+$scope.alta.fecha;
 
          $timeout(function() {
         if (navigator.geolocation) {
