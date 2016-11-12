@@ -1,13 +1,13 @@
 angular.module('starter.servicio', [])
-.service('Servicio', function() {
+.service('Servicio', function($timeout) {
     this.Nombre = "Servicio Firebase";
     this.Guardar = Guardar;
     this.Editar = Editar;
     this.Buscar = Buscar;
+    this.Cargar = Cargar;
 
     function Guardar(ruta, objeto){
-      //return firebase.database().ref(ruta).set(objeto);
-      return firebase.database().ref(ruta).push(objeto);
+      return firebase.database().ref(ruta).set(objeto);
     }
 
     function Editar(objeto){
@@ -26,4 +26,28 @@ angular.module('starter.servicio', [])
 
     
     }
+
+
+    function Cargar(ruta){
+      
+         var referencia = firebase.database().ref(ruta);
+           referencia.on('value', function (snapshot) 
+           {
+            $timeout(function() {
+              return  snapshot.val();
+                     });
+
+           });
+
+     ;
+
+    
+    }
+
+
+
+
+
+
+
 });

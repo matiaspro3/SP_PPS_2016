@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic','starter.servicio','starter.services','starter.pushNotification','starter.pushNotification', 'starter.controllers', 'starter.controladorMapaAccidentes', 
-  'starter.controladorLogin','starter.controladorGraficos','starter.controladorEncuesta', 'starter.controladorGrilla','starter.controladorAltaAccidente', 'ngCordova', 'firebase'])
+  'starter.controladorLogin','starter.factoryUsuario','starter.controladorGraficos','starter.controladorEncuesta', 'starter.controladorGrilla','starter.controladorAltaAccidente', 'ngCordova', 'firebase'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -28,6 +28,7 @@ angular.module('starter', ['ionic','starter.servicio','starter.services','starte
 
     .state('app', {
     url: '/app',
+      cache : false,
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'menuCtrl'
