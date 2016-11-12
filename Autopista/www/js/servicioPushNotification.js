@@ -11,7 +11,7 @@ angular.module('starter.pushNotification', [])
     var url = traerURL();
     var params = JSON.stringify(
     {
-      to:"KNQU_wgx4:APA91bHy38Hf2pNJzmuvrVBDE09iEdurBTwgYQyAWOf9kt0Oed06vG261JpmNfkyVhharyVhO_Js5dl3tosSmRuIr6KYqoOLGSo1D52cYnN2pk7JzotYpWvNVqV4lTXBxxiak7sUKQM2",
+      to:"/topics/borbotones",
       notification:{
       title : "Autopista Borbotones",
       icon : "img/fotoPerfil.png", 
