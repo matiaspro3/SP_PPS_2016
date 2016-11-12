@@ -112,4 +112,13 @@ Segundo parcial
 	
 
 # 	Temas Pendientes.
+11/11.
+M. Mirotta......Los graficos quedaron excelentes, solo tunear un poco mas la vista de seleccion de tipo.No esta tomando los perfiles. Le saque en ngif al menu para q por lo menos figure la opcion de graficos.
 
+P Igoldi........Esta en blanco la encuesta. Si podes comenzala con algo basico para presentar mañana.
+
+H. Blanco.......Quedo bien la lista, habria q ponerle un poco mas de colores y que la fecha la muestre mejor, no el timestamp completo.
+
+H. Dillon.......Excelente el push notification, faltaria el tema del icono, y del mapa la parte de Markers.
+
+L. Baldassarre..Bien el alta. Fijate de tunear y ponerle mas colores y agregarle iconos mas grandes sobre los botones.
