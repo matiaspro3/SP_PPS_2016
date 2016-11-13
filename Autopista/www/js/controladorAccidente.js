@@ -7,39 +7,58 @@ angular.module('starter.controladorAltaAccidente', [])
 
     //Inicio las variables
     $scope.alta = {};
-    $scope.alta.tipo = "";
-    $scope.alta.fecha = "";
-    $scope.alta.descripcion = "";
-    $scope.alta.usuario = "";
-    $scope.alta.fecha = new Date().valueOf();
-    $scope.alta.activo = true;    
-    $scope.alta.id = "";
-    $scope.cargando = false;
-
-
+    $scope.inicial = {
+            tipo : "",
+            fecha : "",
+            descripcion : "",
+            usuario : "",
+            fecha : "",
+            activo : true,
+            id : "",
+            cargando : false,
+            };
+    $scope.alta = angular.copy($scope.inicial);
+    
     $scope.guardarAccidente=function(){
         //Recupero las coordenadas
 
         $scope.cargando = true;
         $scope.alta.usuario = FactoryUsuario.Logueado;
+        $scope.alta.fecha = new Date().valueOf();
         $scope.alta.id = $scope.alta.usuario.nombre+$scope.alta.fecha;
 
          $timeout(function() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition($scope.showPosition);
+            //navigator.geolocation.getCurrentPosition($scope.showPosition);
            // alert("La carga se realizó con éxito");
-
+           console.log($scope.alta);
         } 
         else 
         {
-            navigator.geolocation.getCurrentPosition($scope.showPosition);
+            //navigator.geolocation.getCurrentPosition($scope.showPosition);
+            //console.log($scope.alta);
             console.log("Geolocation is not supported by this browser.");
         }
 
-          PushNotificationService.enviarPushNotification($scope.alta);
+          //PushNotificationService.enviarPushNotification($scope.alta);
           $scope.cargando = false;
         }, 1000);
-    }
+         $scope.reset();
+         console.log($scope.alta);
+    }        
+          
+          $scope.reset = function () {
+                     $timeout(function() {
+
+            console.log($scope.inicial);
+        $scope.alta = angular.copy($scope.inicial);          
+                }, 
+                1000);                  
+             }
+            
+
+
+
      $scope.showPosition = function(position) {
         setTimeout(function() {        
           console.log($scope.alta);
