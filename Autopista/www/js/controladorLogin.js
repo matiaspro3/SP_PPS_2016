@@ -71,6 +71,14 @@ angular.module('starter.controladorLogin', [])
             $scope.verificado = 'no';
           else
             {
+              try
+              {
+                FCMPlugin.subscribeToTopic('borbotones');
+              }
+              catch(error)
+              {
+                console.info("No es un dispositivo móvil");
+              }
               $scope.verificado = 'si';
               $state.go("app.altaAccidente");
             }
