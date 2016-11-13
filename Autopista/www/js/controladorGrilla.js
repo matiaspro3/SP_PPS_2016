@@ -14,9 +14,9 @@ angular.module('starter.controladorGrilla', [])
 
  	console.info($scope.ListadoAccidentes);
 
- 	$scope.VerMapa = function(lat,long){
+ 	$scope.VerMapa = function(accidente){
 
- 		$state.go('app.mapaAccidentes',{latitud : lat, longitud: long});
+ 		$state.go('app.mapaAccidentes',{accidente : JSON.stringify(accidente)});
 
  	};
 

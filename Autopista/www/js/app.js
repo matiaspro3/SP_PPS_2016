@@ -43,12 +43,10 @@ angular.module('starter', ['ionic','starter.servicio','starter.services','starte
   })
 
   .state('app.mapaAccidentes', {
-      url: '/MapaAccidentes/:longitud/:latitud',
+      url: '/MapaAccidentes/:accidente',
       cache : false,
       views: {
-        params: [
-     'latitud', 'longitud'
-  ],
+        
         'menuContent': {
           templateUrl: 'templates/MapaAccidentes.html',
           controller: 'MapaCtrl'
