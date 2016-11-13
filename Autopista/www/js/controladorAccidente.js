@@ -28,45 +28,30 @@ angular.module('starter.controladorAltaAccidente', [])
         $scope.alta.id = $scope.alta.usuario.nombre+$scope.alta.fecha;
 
          $timeout(function() {
-        if (navigator.geolocation) {
-            //navigator.geolocation.getCurrentPosition($scope.showPosition);
-           // alert("La carga se realizó con éxito");
-           console.log($scope.alta);
-        } 
-        else 
-        {
-            //navigator.geolocation.getCurrentPosition($scope.showPosition);
-            //console.log($scope.alta);
-            console.log("Geolocation is not supported by this browser.");
-        }
+           var posOptions = {timeout: 10000, enableHighAccuracy: false};
 
-          //PushNotificationService.enviarPushNotification($scope.alta);
+              var coords = $cordovaGeolocation.getCurrentPosition(posOptions)
+                  .then(function (position) {                    
+                    $scope.alta.latitud=position.coords.latitude;
+                    $scope.alta.longitud=position.coords.longitude;
+                    alert("ACCIDENTE CARGADO GPS ON");
+                      Servicio.Guardar("/Accidentes/"+$scope.alta.usuario.nombre+$scope.alta.fecha+"/",$scope.alta);
+                      PushNotificationService.enviarPushNotification($scope.alta);                      
+                      //console.log($scope.alta);
+                  }, function(err) {
+                  // error
+                      //console.log("25.error en acceso a posicion del GPS" + err);
+                      alert("No se puede cargar el accidente, por favor active su GPS");
+                });                  
           $scope.cargando = false;
         }, 1000);
          $scope.reset();
-         console.log($scope.alta);
+         //console.log($scope.alta);
     }        
           
           $scope.reset = function () {
-                     $timeout(function() {
-
-            console.log($scope.inicial);
-        $scope.alta = angular.copy($scope.inicial);          
-                }, 
-                1000);                  
+                     $timeout(function() { 
+            $scope.alta = angular.copy($scope.inicial);          
+                    }, 1500);                  
              }
-            
-
-
-
-     $scope.showPosition = function(position) {
-        setTimeout(function() {        
-          console.log($scope.alta);
-            $scope.alta.latitud=position.coords.latitude;
-            $scope.alta.longitud=position.coords.longitude;
-
-            Servicio.Guardar("/Accidentes/"+$scope.alta.usuario.nombre+$scope.alta.fecha+"/",$scope.alta);
-        });
-    };
-  
 });
