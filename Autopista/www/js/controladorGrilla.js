@@ -1,6 +1,6 @@
 angular.module('starter.controladorGrilla', [])
 
-.controller('grillaCtrl', function($scope, $timeout, $state, Servicio) {
+.controller('grillaCtrl', function($scope, $timeout, $state, Servicio, FactoryUsuario) {
 
 	$scope.ListadoAccidentes = [];
 	Servicio.Cargar('/Accidentes')
@@ -25,6 +25,7 @@ angular.module('starter.controladorGrilla', [])
  		accidente.activo = false;
  		var updates = {};
         updates['/Accidentes/' + accidente.id +"/activo" ] = false;
+        updates['/Accidentes/' + accidente.id +"/usuario_cerro" ] = FactoryUsuario.Logueado.nombre;
         console.info(updates);
         Servicio.Editar(updates);
  		$state.go('app.grilla');
