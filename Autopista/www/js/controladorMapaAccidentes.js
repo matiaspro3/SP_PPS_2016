@@ -52,7 +52,7 @@ angular.module('starter.controladorMapaAccidentes', [])
     $scope.datosFBArray.$loaded()
     .then(function(){
         angular.forEach($scope.datosFBArray, function(marker) {
-            //console.log(marker.tipo);
+            console.log(marker.tipo);
             tipoAccidente = getIconoMarker(marker.tipo);
             myLatLng = {lat: Number(marker.latitud), lng: Number(marker.longitud)};
               $scope.marker = new google.maps.Marker({
@@ -85,6 +85,15 @@ angular.module('starter.controladorMapaAccidentes', [])
       case 'Averia en vehiculo':
         return "img/averia.png";
         break;
+      case 'Arbol Caido':
+        return "img/arbol.png";
+        break;
+      case 'Nieve en el Camino':
+        return "img/caminocongelado.png";
+        break;
+      case 'Incendio':
+        return "img/fuego.png";
+        break;   
       default:
       return "";
     }

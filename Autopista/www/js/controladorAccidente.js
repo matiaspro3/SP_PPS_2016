@@ -28,16 +28,17 @@ angular.module('starter.controladorAltaAccidente', [])
         $scope.alta.id = $scope.alta.usuario.nombre+$scope.alta.fecha;
 
          $timeout(function() {
-           var posOptions = {timeout: 10000, enableHighAccuracy: false};
+           var posOptions = {timeout: 1000, enableHighAccuracy: false};
 
               var coords = $cordovaGeolocation.getCurrentPosition(posOptions)
                   .then(function (position) {                    
                     $scope.alta.latitud=position.coords.latitude;
                     $scope.alta.longitud=position.coords.longitude;
                     alert("ACCIDENTE CARGADO GPS ON");
+               //       console.log($scope.alta);
                       Servicio.Guardar("/Accidentes/"+$scope.alta.usuario.nombre+$scope.alta.fecha+"/",$scope.alta);
                       PushNotificationService.enviarPushNotification($scope.alta);                      
-                      //console.log($scope.alta);
+                      
                   }, function(err) {
                   // error
                       //console.log("25.error en acceso a posicion del GPS" + err);
@@ -52,6 +53,6 @@ angular.module('starter.controladorAltaAccidente', [])
           $scope.reset = function () {
                      $timeout(function() { 
             $scope.alta = angular.copy($scope.inicial);          
-                    }, 1500);                  
+                    }, 2000);                  
              }
 });
