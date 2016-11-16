@@ -20,3 +20,38 @@
     border:1px solid #000;
     opacity: 1; 
 }
+
+/*ionic radio buttons override*/
+.items {
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+    background-color: #2e2e2e;
+    color: #ededed;
+}
+
+.items-content {
+        background-color: #2e2e2e !important;
+        color: #ededed;
+}  
+
+/* override radio button display with custom icon for both states */
+.items-radio input ~ .radio-icon {
+    visibility: visible !important;
+
+}
+
+.items-radio > .radio-icon:before {
+    content: "\f3a6" !important; /*deselected - Ionic class = ion-android-radio-button-off */
+}
+
+.items-radio > input[type=radio]:checked ~ .radio-icon:before {
+    content: "\f3a7" !important; /*selected Ionic class = ion-android-radio-button-on */
+}
+
+.estilopa{
+    padding: 0 0 0 0 ;
+    margin-bottom: 0 ;
+    background-color: black;
+    color: black;
+    border-style: groove;
+}
