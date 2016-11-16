@@ -32,16 +32,23 @@ angular.module('starter.controladorAltaAccidente', [])
 
               var coords = $cordovaGeolocation.getCurrentPosition(posOptions)
                   .then(function (position) {                    
-                    $scope.alta.latitud=position.coords.latitude;
-                    $scope.alta.longitud=position.coords.longitude;
-                    alert("ACCIDENTE CARGADO GPS ON");
-               //       console.log($scope.alta);
-                      Servicio.Guardar("/Accidentes/"+$scope.alta.usuario.nombre+$scope.alta.fecha+"/",$scope.alta);
-                      PushNotificationService.enviarPushNotification($scope.alta);                      
-                      
-                  }, function(err) {
-                  // error
-                      //console.log("25.error en acceso a posicion del GPS" + err);
+                    try
+                    {
+                      $scope.alta.latitud=position.coords.latitude;
+                      $scope.alta.longitud=position.coords.longitude;
+                      if($scope.alta.usuario != "")
+                      {                        
+                        alert("ACCIDENTE CARGADO GPS ON");
+                        //console.log($scope.alta);
+                        Servicio.Guardar("/Accidentes/"+$scope.alta.usuario.nombre+$scope.alta.fecha+"/",$scope.alta);
+                        PushNotificationService.enviarPushNotification($scope.alta);                      
+                      }
+                    }
+                    catch(error)
+                    {
+                      alert("No se pudo cargar el accidente. "+error);
+                    } 
+                 }, function(err) {                  
                       alert("No se puede cargar el accidente, por favor active su GPS");
                 });                  
           $scope.cargando = false;
@@ -53,6 +60,6 @@ angular.module('starter.controladorAltaAccidente', [])
           $scope.reset = function () {
                      $timeout(function() { 
             $scope.alta = angular.copy($scope.inicial);          
-                    }, 2000);                  
+                    }, 3000);                  
              }
 });
