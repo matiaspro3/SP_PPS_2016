@@ -1,6 +1,6 @@
 angular.module('starter.controladorAltaAccidente', [])
 
-.controller('AltaCtrl', function($timeout,$scope, $state, $cordovaGeolocation, $firebaseArray, Servicio, PushNotificationService, FactoryUsuario) {
+.controller('AltaCtrl', function($timeout,$scope,$ionicPopup, $state, $cordovaGeolocation, $firebaseArray, Servicio, PushNotificationService, FactoryUsuario) {
   
   //esta es mi base de datos donde probe las altas.
   //var FBRef = new Firebase("https://primerfirebase-a52b4.firebaseio.com/Accidentes"); 
@@ -38,18 +38,22 @@ angular.module('starter.controladorAltaAccidente', [])
                       $scope.alta.longitud=position.coords.longitude;
                       if($scope.alta.usuario != "")
                       {                        
-                        alert("ACCIDENTE CARGADO GPS ON");
+                        $scope.showAlert("Accidente cargado", "Gracias por notificarlo");
                         //console.log($scope.alta);
                         Servicio.Guardar("/Accidentes/"+$scope.alta.usuario.nombre+$scope.alta.fecha+"/",$scope.alta);
                         PushNotificationService.enviarPushNotification($scope.alta);                      
                       }
+                      else
+                      {
+                        $scope.showAlert("No se pudo cargar el accidente. ","Intente nuevamente");   
+                      }
                     }
                     catch(error)
                     {
-                      alert("No se pudo cargar el accidente. "+error);
+                      $scope.showAlert("No se pudo cargar el accidente. ",error);
                     } 
                  }, function(err) {                  
-                      alert("No se puede cargar el accidente, por favor active su GPS");
+                      $scope.showAlert("Error al cargar el accidente","Por favor active su GPS");
                 });                  
           $scope.cargando = false;
         }, 1000);
@@ -62,4 +66,14 @@ angular.module('starter.controladorAltaAccidente', [])
             $scope.alta = angular.copy($scope.inicial);          
                     }, 3000);                  
              }
+
+          $scope.showAlert = function(problema,adicional) {
+           var alertPopup = $ionicPopup.alert({
+             title: resultado,
+             template: adicional
+           });
+           alertPopup.then(function(res) {
+             console.log(res);
+           });
+        }
 });
