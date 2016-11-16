@@ -5,7 +5,9 @@ angular.module('starter.controllers', [])
   {
     if (firebase.auth().currentUser != null)
     {
-      $scope.usuario = FactoryUsuario.Logueado;
+      $timeout(function(){
+        $scope.usuario = FactoryUsuario.Logueado;
+      });
     }
     else
     {

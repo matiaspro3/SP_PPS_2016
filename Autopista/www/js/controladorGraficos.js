@@ -3,10 +3,15 @@ angular.module('starter.controladorGraficos', [])
 .controller('GraficosCtrl', function($scope, $state, Servicio, $timeout) {
 	try
 	{
+		$scope.Accidentes = [];
 		if (firebase.auth().currentUser != null)
 		{
-		    $scope.Accidentes = Servicio.Buscar('/Accidentes');
-			console.info($scope.Accidentes);
+			$timeout(function(){
+			    Servicio.Cargar('/Accidentes').on('child_added',function(snapshot)
+				{
+					$scope.Accidentes.push(snapshot.val());
+				});
+			});
 			$scope.cargando = false;
 		}
 		else
@@ -28,6 +33,9 @@ angular.module('starter.controladorGraficos', [])
 			$scope.cantidadFalla = 0;
 			$scope.cantidadAnimales = 0;
 			$scope.cantidadAmbulancia = 0;
+			$scope.cantidadArbol = 0;
+			$scope.cantidadIncendio = 0;
+			$scope.cantidadNieve = 0;
 			$timeout(function() {
 				$scope.Accidentes.forEach(function(accidente){
 				    switch (accidente.tipo){
@@ -42,6 +50,15 @@ angular.module('starter.controladorGraficos', [])
 				    		break;
 				    	case "Necesidad de Ambulancia":
 				    			$scope.cantidadAmbulancia = parseInt($scope.cantidadAmbulancia) + 1;
+				    		break;
+				    	case "Incendio":
+				    			$scope.cantidadIncendio = parseInt($scope.cantidadIncendio) + 1;
+				    		break;
+				    	case "Arbol Caido":
+				    			$scope.cantidadArbol = parseInt($scope.cantidadArbol) + 1;
+				    		break;
+				    	case "Nieve en el Camino":
+				    			$scope.cantidadNieve = parseInt($scope.cantidadNieve) + 1;
 				    		break;
 				    }
 		  		});
@@ -87,6 +104,15 @@ angular.module('starter.controladorGraficos', [])
 			            }, {
 			                name: 'Ambulancia',
 			                y: $scope.cantidadAmbulancia
+			            }, {
+			                name: 'Arbol Caido',
+			                y: $scope.cantidadArbol
+			            }, {
+			                name: 'Incendio',
+			                y: $scope.cantidadIncendio
+			            }, {
+			                name: 'Nieve en camino',
+			                y: $scope.cantidadNieve
 			            }]
 			        }]
 				});
@@ -95,129 +121,113 @@ angular.module('starter.controladorGraficos', [])
 		}
 		catch (error)
 		{
-			console.info("Ha ocurrido un error en Deslogueo(). " + error);
+			console.info("Ha ocurrido un error en GraficoTotal(). " + error);
 		}
 	}
 
-	$scope.CantidadPorDia = function() 
+	$scope.CantidadAccidentesHoy = function() 
 	{
 		try
 		{
 			$scope.cargando = true;
 			$timeout(function() {
-				$scope.totalAccidente = [];
-				$scope.totalFalla = [];
-				$scope.totalAnimales = [];
-				$scope.totalAmbulancia = [];
 				$scope.cantidadAccidente = 0;
 				$scope.cantidadFalla = 0;
 				$scope.cantidadAnimales = 0;
 				$scope.cantidadAmbulancia = 0;
+				$scope.cantidadArbol = 0;
+				$scope.cantidadIncendio = 0;
+				$scope.cantidadNieve = 0;
 				$scope.dias = [];
 				$scope.dia = 0;
 				$scope.Accidentes.forEach(function(accidente){
 					var fechaAccidente = new Date(accidente.fecha);
+					var fechaActual = new Date();
 					if (!isNaN(fechaAccidente.getDate()))
 					{
-					   	switch (accidente.tipo){
-					    	case "Accidente":
-					    			$scope.cantidadAccidente = parseInt($scope.cantidadAccidente) + 1;
-					    		break;
-					    	case "Averia en vehiculo":
-					    			$scope.cantidadFalla = parseInt($scope.cantidadFalla) + 1;
-					    		break;
-					    	case "Animales sueltos":
-					    			$scope.cantidadAnimales = parseInt($scope.cantidadAnimales) + 1;
-					    		break;
-					    	case "Necesidad de Ambulancia":
-					    			$scope.cantidadAmbulancia = parseInt($scope.cantidadAmbulancia) + 1;
-					    		break;
+						var fechaAccidenteFormato = String(fechaAccidente.getDate()) + '/' + String(fechaAccidente.getMonth()) + '/' + String(fechaAccidente.getYear());
+						var fechaActualFormato = String(fechaActual.getDate()) + '/' + String(fechaActual.getMonth()) + '/' + String(fechaActual.getYear());
+						if (fechaAccidenteFormato == fechaActualFormato)
+						{
+							console.info("entre");
+						   	switch (accidente.tipo){
+						    	case "Accidente":
+						    			$scope.cantidadAccidente = parseInt($scope.cantidadAccidente) + 1;
+						    		break;
+						    	case "Averia en vehiculo":
+						    			$scope.cantidadFalla = parseInt($scope.cantidadFalla) + 1;
+						    		break;
+						    	case "Animales sueltos":
+						    			$scope.cantidadAnimales = parseInt($scope.cantidadAnimales) + 1;
+						    		break;
+						    	case "Necesidad de Ambulancia":
+						    			$scope.cantidadAmbulancia = parseInt($scope.cantidadAmbulancia) + 1;
+						    		break;
+						    	case "Incendio":
+						    			$scope.cantidadIncendio = parseInt($scope.cantidadIncendio) + 1;
+						    		break;
+						    	case "Arbol Caido":
+						    			$scope.cantidadArbol = parseInt($scope.cantidadArbol) + 1;
+						    		break;
+						    	case "Nieve en el Camino":
+						    			$scope.cantidadNieve = parseInt($scope.cantidadNieve) + 1;
+						    		break;
+					   		}
 				   		}
-						if ($scope.dia == 0)
-						{
-							$scope.dias.push(String(fechaAccidente.getDate()) + '/' + String(fechaAccidente.getMonth()));
-					    	$scope.dia = String(fechaAccidente.getDate()) + '/' + String(fechaAccidente.getMonth());
-						}
-						else
-						{
-					   		if ($scope.dia != (String(fechaAccidente.getDate()) + '/' + String(fechaAccidente.getMonth())))
-						    {
-						    	console.info("cambio dia");
-						    	$scope.dias.push(String(fechaAccidente.getDate()) + '/' + String(fechaAccidente.getMonth()));
-						    	$scope.dia = String(fechaAccidente.getDate()) + '/' + String(fechaAccidente.getMonth());
-						    	$scope.totalAccidente.push($scope.cantidadAccidente);
-								$scope.totalFalla.push($scope.cantidadFalla);
-								$scope.totalAnimales.push($scope.cantidadAnimales);
-								$scope.totalAmbulancia.push($scope.cantidadAmbulancia);
-			    				$scope.cantidadAccidente = 0;
-								$scope.cantidadFalla = 0;
-								$scope.cantidadAnimales = 0;
-								$scope.cantidadAmbulancia = 0;
-						    }
-						}
 					}
 		  		});
-				$scope.totalAccidente.push($scope.cantidadAccidente);
-				$scope.totalFalla.push($scope.cantidadFalla);
-				$scope.totalAnimales.push($scope.cantidadAnimales);
-				$scope.totalAmbulancia.push($scope.cantidadAmbulancia);
 			  	Highcharts.chart('divGraficos', {
 					chart: {
-		            	type: 'bar'
+			            plotBackgroundColor: null,
+			            plotBorderWidth: null,
+			            plotShadow: false,
+			            type: 'pie'
 			        },
 			        title: {
-			            text: 'Accidentes por día'
-			        },
-			        xAxis: {
-			            categories: $scope.dias
-			        },
-			        yAxis: {
-			            min: 0,
-			            title: {
-			                text: 'Cantidades',
-			                align: 'high'
-			            },
-			            labels: {
-			                overflow: 'justify'
-			            }
+			            text: 'Total accidentes de hoy'
 			        },
 			        tooltip: {
-			            valueSuffix: ' cantidades'
+			            pointFormat: '{series.name}: <b>{point.y}</b>'
 			        },
 			        plotOptions: {
-			            bar: {
+			            pie: {
+			                allowPointSelect: true,
+			                cursor: 'pointer',
 			                dataLabels: {
-			                    enabled: true
+			                    enabled: true,
+			                    format: '<b>{point.name}</b>: {point.y}',
+			                    style: {
+			                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+			                    }
 			                }
 			            }
 			        },
-			        legend: {
-			            layout: 'vertical',
-			            align: 'right',
-			            verticalAlign: 'top',
-			            x: -40,
-			            y: 80,
-			            floating: true,
-			            borderWidth: 1,
-			            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-			            shadow: true
-			        },
-			        credits: {
-			            enabled: false
-			        },
-				    series: [{
-				        name: 'Falla Vehiculo',
-				        data: $scope.totalFalla
-				    }, {
-				        name: 'Accidente',
-				        data: $scope.totalAccidente 
-				    }, {
-				        name: 'Animales Sueltos',
-				        data: $scope.totalAnimales
-				    }, {
-				        name: 'Ambulancia',
-				        data: $scope.totalAmbulancia
-				    }]
+			        series: [{
+			            name: 'Cantidad',
+			            colorByPoint: true,
+			            data: [{
+			                name: 'Falla Vehículo',
+			                y: $scope.cantidadFalla
+			            }, {
+			                name: 'Accidente',
+			                y: $scope.cantidadAccidente
+			            }, {
+			                name: 'Animales Sueltos',
+			                y: $scope.cantidadAnimales
+			            }, {
+			                name: 'Ambulancia',
+			                y: $scope.cantidadAmbulancia
+			            }, {
+			                name: 'Arbol Caido',
+			                y: $scope.cantidadArbol
+			            }, {
+			                name: 'Incendio',
+			                y: $scope.cantidadIncendio
+			            }, {
+			                name: 'Nieve en camino',
+			                y: $scope.cantidadNieve
+			            }]
+			        }]
 			    });
 				$scope.cargando = false;
 			}, 1000); //Cierra timeout
