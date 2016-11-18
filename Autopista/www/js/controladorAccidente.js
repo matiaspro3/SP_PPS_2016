@@ -21,9 +21,12 @@ angular.module('starter.controladorAltaAccidente', [])
     
     $scope.guardarAccidente=function(){
         //Recupero las coordenadas
+    $scope.alta.usuario = FactoryUsuario.Logueado;
+
+    if ($scope.alta.usuario != null)
+    {
 
         $scope.cargando = true;
-        $scope.alta.usuario = FactoryUsuario.Logueado;
         $scope.alta.fecha = new Date().valueOf();
         $scope.alta.id = $scope.alta.usuario.nombre+$scope.alta.fecha;
 
@@ -50,6 +53,7 @@ angular.module('starter.controladorAltaAccidente', [])
                     }
                     catch(error)
                     {
+                      console.log(error);
                       $scope.showAlert("No se pudo cargar el accidente. ",error);
                     } 
                  }, function(err) {                  
@@ -59,6 +63,11 @@ angular.module('starter.controladorAltaAccidente', [])
         }, 1000);
          $scope.reset();
          //console.log($scope.alta);
+         }
+         else
+         {
+           $state.go("app.inicio");
+         }
     }        
           
           $scope.reset = function () {
