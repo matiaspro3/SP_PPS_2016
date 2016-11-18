@@ -52,21 +52,24 @@ angular.module('starter.controladorMapaAccidentes', [])
     $scope.datosFBArray.$loaded()
     .then(function(){
         angular.forEach($scope.datosFBArray, function(marker) {
-            console.log(marker.tipo);
-            tipoAccidente = getIconoMarker(marker.tipo);
-            myLatLng = {lat: Number(marker.latitud), lng: Number(marker.longitud)};
-              $scope.marker = new google.maps.Marker({
-              position: myLatLng,
-              draggable: true,
-              animation: google.maps.Animation.DROP,
-              title: marker.descripcion,
-              icon : tipoAccidente
-            });
-            $scope.marker.setMap($scope.map); 
+            //console.log(marker);
+            if(marker.activo){
+              tipoAccidente = getIconoMarker(marker.tipo);
+              myLatLng = {lat: Number(marker.latitud), lng: Number(marker.longitud)};
+                $scope.marker = new google.maps.Marker({
+                position: myLatLng,
+                draggable: true,
+                animation: google.maps.Animation.DROP,
+                title: marker.descripcion,
+                icon : tipoAccidente
+              });
+              $scope.marker.setMap($scope.map); 
+            }  
         })
     });
 
   }, function(error){
+    console.info(error);
     console.log("Could not get location");
   });
 
