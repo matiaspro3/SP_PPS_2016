@@ -1,11 +1,11 @@
 angular.module('starter.controladorLogin', [])
 
-.controller('LoginCtrl', function($scope, $stateParams, $timeout, $state, Servicio) {
+.controller('LoginCtrl', function($scope, $stateParams, $timeout, $state, Servicio, FactoryUsuario) {
   try
   {
     $scope.login = {};
     $scope.login.usuario = "m.mirotta@gmail.com";
-    $scope.login.clave = "";
+    $scope.login.clave = "123456";
 
     $scope.mensajeLogin = {};
     $scope.mensajeLogin.ver = false;
@@ -43,16 +43,6 @@ angular.module('starter.controladorLogin', [])
   }
 
   $scope.Logear = function (){
-
-    FCMPlugin.getToken(
-  function(token){
-    console.log(token);
-  },
-  function(err){
-    console.log('error retrieving token: ' + err);
-  }
-)
-    
     $scope.mensajeLogin.ver = false;
     $scope.cartelVerificar = false;
     $scope.cargando = true;
@@ -65,16 +55,35 @@ angular.module('starter.controladorLogin', [])
         updates['/usuario/' + usuario.displayName + '/fechaAcceso'] = firebase.database.ServerValue.TIMESTAMP;
         Servicio.Editar(updates);
 
+        Servicio.Cargar('/usuario/' + usuario.displayName).on('value',
+          function(respuesta) {
+            FactoryUsuario.Logueado = respuesta.val();
+          },
+          function(error) {
+            // body...
+          }
+
+        );
+
         $timeout(function() {
           $scope.logueado = 'si';
           if (usuario.emailVerified == false)
             $scope.verificado = 'no';
           else
             {
+              try
+              {
+                FCMPlugin.subscribeToTopic('borbotones');
+              }
+              catch(error)
+              {
+                console.info("No es un dispositivo móvil");
+              }
               $scope.verificado = 'si';
               $state.go("app.altaAccidente");
             }
-        });
+          $scope.cargando = false;
+        }, 1000);
       }, function (error){
           $timeout(function() {
             switch (error.code)
@@ -178,7 +187,7 @@ angular.module('starter.controladorLogin', [])
 
 })
 
-.controller('RegistroCtrl', function($scope, $stateParams, $timeout, $state, Servicio) {
+.controller('RegistroCtrl', function($scope, $stateParams, $timeout, $state, Servicio, FactoryUsuario) {
   $scope.login = {};
   $scope.login.usuario = "jperez@gmail.com";
   $scope.login.clave = "123456";
@@ -210,7 +219,18 @@ angular.module('starter.controladorLogin', [])
         }).then( function(resultado){
           firebase.auth().currentUser.updateProfile({
             displayName: $scope.login.nombre,
-          }).then(function() {  
+          }).then(function() { 
+
+            Servicio.Cargar('/usuario/' + usuario.displayName).on('value',
+              function(respuesta) {
+                FactoryUsuario.Logueado = respuesta.val();
+              },
+              function(error) {
+                // body...
+              }
+
+            );
+
             $state.go("login");
           }, function(error) {
             // An error happened.

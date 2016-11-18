@@ -13,14 +13,16 @@
 
   <ion-side-menu side="left">
     <ion-header-bar class="bar-deepblue-reverse bar-deepblue-borderbottom">
-      <h1 class="title">Menú</h1>
+      <h1 class="title">Menu</h1>
     </ion-header-bar>
     <ion-content>
       <ion-list>
        <ion-item ng-init="foto = 'img/fotoPerfil.png'"  class="item-menu-avatar text-center">
           <img ng-src="{{foto}}" class="avatar-menu">
         </ion-item>
-        
+              <ion-item menu-close class="menu-positive text-center" href="#/app/perfil">
+          <b>{{ usuario.nombre }}</b>
+        </ion-item>
         <ion-item menu-close ng-click="IrA('altaAccidente')">
           <i class="ion-alert-circled"></i><span style="margin-left:1%">Alta de Accidente</span>
         </ion-item>

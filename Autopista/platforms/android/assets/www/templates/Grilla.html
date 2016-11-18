@@ -1,11 +1,14 @@
 <ion-view view-title="Grilla">
   <ion-content>       
     <ion-list>
-        <ion-item ng-repeat="accidente in ListadoAccidentes" ng-click="VerMapa(accidente.latitud, accidente.longitud)">
-            <h3>Descripcion: {{accidente.descripcion}}</br></h3>
-            Latitud: {{accidente.latitud}}</br>
-            Longitud: {{accidente.longitud}}</br>                      
-        </ion-item>
+      <ion-item ng-repeat="accidente in ListadoAccidentes | filter:{ activo: true }" ng-click="VerMapa(accidente)" style="background-color: blue;color: green;">
+          Descripcion: <span style="font-family:arial; color:red; font-size: 16px;font-weight: bold;">{{accidente.descripcion}}</span></br>
+          Tipo: <span style="font-family:arial; color:black; font-size: 14px;">{{accidente.tipo}}</span></br>
+          Fecha: <span style="font-family:arial; color:black; font-size: 14px;">{{accidente.fecha}}</span></br>
+      <ion-option-button class="ion-minus-circled" ng-click="Solucionar(accidente)" ng-if="usuario.perfil != 'cliente'" style="background-color: red;">
+          <span style="font-family:arial; color:white; font-size: 14px;">Solucionar</span>
+      </ion-option-button>
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>

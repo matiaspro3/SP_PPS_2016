@@ -6,14 +6,16 @@ angular.module('starter.pushNotification', [])
     return Url;
   }
 
-  this.enviarPushNotification = function () {
+  this.enviarPushNotification = function (accidente) {
     var http = new XMLHttpRequest();
     var url = traerURL();
     var params = JSON.stringify(
     {
-      to:"KNQU_wgx4:APA91bHW8lAe3dpRG5SOrRm0CKjpYW_br5tavb9gDyBqQfHCRN8wK-oJfHVVdF9pfHl0bwsKAec6ZpUeP3FJzAC39MR7VpHk_no_cEw44pEED-63No-bmSr7AeD2ju3VWNm6uwUr5Be9",
+      to:"/topics/borbotones",
       notification:{
-      body : "Se informó un nuevo accidente",
+      title : "Autopista Borbotones",
+      icon : "img/fotoPerfil.png", 
+      body : "Informe de " + accidente.tipo + "! " + accidente.descripcion,
       priority : 10
       }
     });
@@ -24,7 +26,7 @@ angular.module('starter.pushNotification', [])
 
     http.onreadystatechange = function() {
         if(http.readyState == 4 && http.status == 200) {
-            alert(http.responseText);
+            console.log(http.responseText);
         }
     }
     http.send(params);

@@ -1,0 +1,68 @@
+<ion-view view-title="Encuesta sobre calidad del servicio">
+  <ion-content>       
+	<ion-list>
+		<ion-item>
+  			<ion-label><b>¿Cómo conoció nuestro producto?</b></ion-label>
+    		<ion-radio  name="dondeConocio" ng-model="encuesta.respuestas.dondeConocio"   ng-value="'Se lo recomendaron'" >
+    			Se lo recomendaron</ion-radio>
+			<ion-radio name="dondeConocio" ng-model="encuesta.respuestas.dondeConocio"  ng-value="'Publicidad grafica'">
+				Publicidad grafica</ion-radio>
+			<ion-radio name="dondeConocio"  ng-model="encuesta.respuestas.dondeConocio"  ng-value="'Publicidad online'">
+				Publicidad online</ion-radio>
+			<ion-radio name="dondeConocio" ng-model="encuesta.respuestas.dondeConocio"  ng-value="'Busco por su cuenta en internet'">
+				Busco por su cuenta en internet</ion-radio>			
+	   </ion-item>
+  		<ion-item>
+  			<ion-label><b>¿Es útil el uso de nuestro producto para usted?</b></ion-label>
+    		<ion-radio  name="usoHabitual" ng-model="encuesta.respuestas.usoHabitual" ng-value="'Mucho'">
+    			Mucho</ion-radio>
+			<ion-radio name="usoHabitual" ng-model="encuesta.respuestas.usoHabitual" ng-value="'Algo'">
+			Algo</ion-radio>
+			<ion-radio name="usoHabitual" ng-model="encuesta.respuestas.usoHabitual" ng-value="'Nada'">
+			Nada</ion-radio>			
+  		</ion-item>
+
+  		<ion-item>
+  			<ion-label><b>¿Qué lo impresionó más acerca de nuestro producto o servicio?</b></ion-label>
+    		<ion-radio name="queImpresiono" ng-model="encuesta.respuestas.queImpresiono" ng-value="'Mapa'">
+    			Mapa</ion-radio>
+			<ion-radio  name="queImpresiono" ng-model="encuesta.respuestas.queImpresiono" ng-value="'Listado'">
+				Listado</ion-radio>
+			<ion-radio  name="queImpresiono"  ng-model="encuesta.respuestas.queImpresiono" ng-value="'Nada'">
+			Nada</ion-radio>			
+  		</ion-item>
+
+
+  		<ion-item>
+  			<ion-label><b>¿Qué lo decepcionó de nuestro producto o servicio?</b></ion-label>
+    		<ion-radio  name="queDecepciono" ng-model="encuesta.respuestas.queDecepciono" ng-value="'Mapa'">
+    		Mapa</ion-radio>
+			<ion-radio  name="queDecepciono"  ng-model="encuesta.respuestas.queDecepciono" ng-value="'Listado'">
+			Listado</ion-radio>
+			<ion-radio  name="queDecepciono"  ng-model="encuesta.respuestas.queDecepciono" ng-value="'Nada'">
+			Nada</ion-radio>			
+  		</ion-item>
+
+  		<ion-item>
+  			<ion-label><b>¿Recomendaria nuestro producto?</b></ion-label>
+    		<ion-radio   name="loRecomendaria" ng-model="encuesta.respuestas.loRecomendaria" ng-value="'Si'">
+    		Si</ion-radio>
+			<ion-radio   name="loRecomendaria"  ng-model="encuesta.respuestas.loRecomendaria" ng-value="'No se'">
+			No se</ion-radio>
+			<ion-radio   name="loRecomendaria"  ng-model="encuesta.respuestas.loRecomendaria" ng-value="'No'">
+			No</ion-radio>			
+  		</ion-item>
+
+            <ion-item>
+           <label class="item item-input">
+                <span class="input-label"><strong>Sugerencias</strong></span>
+                <input name="descripcion" type="text" ng-model="encuesta.respuestas.sugerencia" >
+            </label>      
+      </ion-item>
+
+     </ion-list>
+
+     <button class="button button-block button-positive" ng-click="guardarEncuesta()">Enviar respuestas</button>
+
+  </ion-content>
+</ion-view>

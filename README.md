@@ -1,8 +1,10 @@
 # SP_PPS_2016
 Segundo parcial
 
-***** ID  IONIC......FDD1CCB0....*****
-***** URL FIRE.......https://autopista-b6678.firebaseapp.com/****
+***** ID  IONIC......FDD1CCB0....
+
+***** URL FIRE.......https://autopista-b6678.firebaseapp.com/  
+
 
 
 #	INTEGRANTES.

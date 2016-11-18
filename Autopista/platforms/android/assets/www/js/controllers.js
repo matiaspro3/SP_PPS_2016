@@ -1,17 +1,12 @@
 angular.module('starter.controllers', [])
 
-.controller('menuCtrl', function($scope, $ionicModal, $timeout, $state) {
+.controller('menuCtrl', function($scope, $ionicModal, $timeout, $state, Servicio, FactoryUsuario) {
   try
   {
     if (firebase.auth().currentUser != null)
     {
-      var usuarioLogeado = firebase.auth().currentUser;
-      $scope.usuario = {};
-      var referencia = firebase.database().ref('usuario/' + usuarioLogeado.displayName);
-      referencia.on('value', function(snapshot) {
-        $timeout(function() {
-          $scope.usuario = snapshot.val();
-        });
+      $timeout(function(){
+        $scope.usuario = FactoryUsuario.Logueado;
       });
     }
     else
@@ -27,11 +22,7 @@ angular.module('starter.controllers', [])
   $scope.Deslogear = function (){
     try
     {
-      firebase.auth().signOut().catch(function (error){
-        console.info("Ha ocurrido un error en Deslogueo(). " + error);
-      }).then( function(resultado){
         $state.go("app.encuestas");
-      });
     }
     catch (error)
     {

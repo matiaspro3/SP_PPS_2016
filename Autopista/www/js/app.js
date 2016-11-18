@@ -42,6 +42,14 @@ angular.module('starter', ['ionic','starter.servicio','starter.services','starte
     }
   })
 
+.state('app.perfil', {
+    url: '/perfil',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/perfil.html'
+      }
+    }
+  })
   .state('app.mapaAccidentes', {
       url: '/MapaAccidentes/:accidente',
       cache : false,

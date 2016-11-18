@@ -5587,9 +5587,14 @@ ion-tabs.tabs-striped.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs
 .popup-head {
   padding: 15px 10px;
   border-bottom: 1px solid #eee;
-  text-align: center; }
+  text-align: center; 
+  color:black;
+  background-color: #009689;
+
+}
 
 .popup-title {
+  color:black;
   margin: 0;
   padding: 0;
   font-size: 15px; }
@@ -5602,7 +5607,11 @@ ion-tabs.tabs-striped.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs
 
 .popup-body {
   padding: 10px;
-  overflow: auto; }
+  overflow: auto; 
+  color:black;
+  text-align: center;  
+  font-weight:bold;
+}
 
 .popup-buttons {
   display: -webkit-box;
