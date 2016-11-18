@@ -21,6 +21,14 @@
     opacity: 1; 
 }
 
+.CajaInicio {
+  width:750px;
+  margin:0 auto;
+  margin-top:8px;
+  margin-bottom:2%;
+  transition:opacity 1s;
+  -webkit-transition:opacity 1s;
+}
 /*ionic radio buttons override*/
 .items {
     padding: 0 !important;

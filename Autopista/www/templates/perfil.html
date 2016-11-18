@@ -22,6 +22,47 @@
       <input  style="font-size: 16px;color: blue;" type="text" ng-model="usuario.perfil"  readonly >
     </label>
 
+
+
+
+
+<div class="CajaInicio  animated  slideInUp" ng-if="usuario.perfil=='admin'">
+              <center>
+              <h1  style="color:yellow;">Listado de Usuarios</h1>
+              <!-- id="listaPersonas" -->
+                </center>
+                <table style="color:red;" class='table table-hover table-responsive ' id="listaPersonas">
+                  <thead>
+                    <tr>
+                      <th>  Usuario   </th>       
+                      <th>  Correo     </th>
+                      <th>  Tipo     </th>
+                    </tr> 
+                  </thead>
+                  
+                  <tr ng-repeat="usuario in grilla" style="color:blue;">
+                  
+                    <td>{{usuario.nombre}}</td>
+                    <td>{{usuario.correo}}</td>
+                    <td>{{usuario.perfil}}</td>
+                    
+                               
+                  </tr>
+                    
+                </table>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
   </ion-content>
 
   
