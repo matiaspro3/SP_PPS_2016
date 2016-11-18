@@ -69,7 +69,7 @@ angular.module('starter.controladorAltaAccidente', [])
 
           $scope.showAlert = function(problema,adicional) {
            var alertPopup = $ionicPopup.alert({
-             title: resultado,
+             title: problema,
              template: adicional
            });
            alertPopup.then(function(res) {
