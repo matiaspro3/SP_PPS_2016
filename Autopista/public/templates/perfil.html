@@ -1,0 +1,30 @@
+<ion-view view-title="Perfil" hide-back-button="true">
+
+  <form name="accountForm">
+  
+  <!-- main content -->
+  <ion-content>
+    
+    <div class=" text-center ui-gradient-deepblue padding">
+     <!--   <img class="avatar-account" ng-init="foto = 'img/fotoPerfil.png'" >-->
+    </div>
+
+    <label class="item item-input">
+      <span style="font-size: 16px;color: red;" class="input-label">Email</span>
+      <input style="font-size: 16px;color: blue;" type="text" ng-model="usuario.correo"  readonly >
+    </label>
+    <label class="item item-input">
+      <span style="font-size: 16px;color: red;" class="input-label">Nombre</span>
+      <input  style="font-size: 16px;color: blue;" type="text" ng-model="usuario.nombre" readonly>
+    </label>
+    <label class="item item-input">
+      <span style="font-size: 16px;color: red;" class="input-label">Tipo de Usuario</span>
+      <input  style="font-size: 16px;color: blue;" type="text" ng-model="usuario.perfil"  readonly >
+    </label>
+
+  </ion-content>
+
+  
+  </form>
+
+</ion-view>

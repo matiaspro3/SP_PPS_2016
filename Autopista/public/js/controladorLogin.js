@@ -1,19 +1,51 @@
 angular.module('starter.controladorLogin', [])
 
-.controller('LoginCtrl', function($scope, $stateParams, $timeout, $state, Servicio) {
-  $scope.logueado = 'no';
-  $scope.verificado = 'no';
-  $scope.cartelVerificar = false;
+.controller('LoginCtrl', function($scope, $stateParams, $timeout, $state, Servicio, FactoryUsuario) {
+  try
+  {
+    $scope.login = {};
+    $scope.login.usuario = "m.mirotta@gmail.com";
+    $scope.login.clave = "123456";
 
-  $scope.login = {};
-  $scope.login.usuario = "m.mirotta@gmail.com";
-  $scope.login.clave = "";
+    $scope.mensajeLogin = {};
+    $scope.mensajeLogin.ver = false;
+    $scope.cargando = false;
 
-  $scope.mensajeLogin = {};
-  $scope.mensajeLogin.ver = false;
+    if (firebase.auth().currentUser != null)
+    {
+      if (firebase.auth().currentUser.emailVerified == false)
+      {
+        console.info("verificado");
+        $scope.verificado = 'no';
+        $scope.logueado = 'si';
+        $scope.cartelVerificar = false;
+      }
+      else
+      {
+        $scope.logueado = 'no';
+        $scope.verificado = 'no';
+        $scope.cartelVerificar = false;
+      }
+    }
+    else{
+      $scope.logueado = 'no';
+      $scope.verificado = 'no';
+      $scope.cartelVerificar = false;
+    }
+  }
+  catch (error)
+  {
+    $scope.mensajeLogin.mensaje = "Ha ocurrido un error.";
+    $scope.mensajeLogin.ver = true;
+    $scope.cargando = false;
+    $scope.mensajeLogin.estilo = "alert-danger";
+    console.info("Ha ocurrido un error en LoginCtrl. " + error);
+  }
+
   $scope.Logear = function (){
     $scope.mensajeLogin.ver = false;
     $scope.cartelVerificar = false;
+    $scope.cargando = true;
     try
     {
       firebase.auth().signInWithEmailAndPassword($scope.login.usuario, $scope.login.clave)
@@ -21,9 +53,17 @@ angular.module('starter.controladorLogin', [])
         var usuario = firebase.auth().currentUser;
         var updates = {};
         updates['/usuario/' + usuario.displayName + '/fechaAcceso'] = firebase.database.ServerValue.TIMESTAMP;
-        //firebase.database().ref().update(updates);
-
         Servicio.Editar(updates);
+
+        Servicio.Cargar('/usuario/' + usuario.displayName).on('value',
+          function(respuesta) {
+            FactoryUsuario.Logueado = respuesta.val();
+          },
+          function(error) {
+            // body...
+          }
+
+        );
 
         $timeout(function() {
           $scope.logueado = 'si';
@@ -31,10 +71,19 @@ angular.module('starter.controladorLogin', [])
             $scope.verificado = 'no';
           else
             {
+              try
+              {
+                FCMPlugin.subscribeToTopic('borbotones');
+              }
+              catch(error)
+              {
+                console.info("No es un dispositivo móvil");
+              }
               $scope.verificado = 'si';
               $state.go("app.altaAccidente");
             }
-        });
+          $scope.cargando = false;
+        }, 1000);
       }, function (error){
           $timeout(function() {
             switch (error.code)
@@ -48,8 +97,8 @@ angular.module('starter.controladorLogin', [])
                 break;
 
             }
-            console.info(error.code);
-          });
+            $scope.cargando = false;
+          }, 1000);
       });
     }
     catch (error)
@@ -138,7 +187,7 @@ angular.module('starter.controladorLogin', [])
 
 })
 
-.controller('RegistroCtrl', function($scope, $stateParams, $timeout, $state, Servicio) {
+.controller('RegistroCtrl', function($scope, $stateParams, $timeout, $state, Servicio, FactoryUsuario) {
   $scope.login = {};
   $scope.login.usuario = "jperez@gmail.com";
   $scope.login.clave = "123456";
@@ -147,8 +196,10 @@ angular.module('starter.controladorLogin', [])
   $scope.mensajeLogin = {};
   $scope.mensajeLogin.ver = false;
   $scope.cartelVerificar = false;
+  $scope.cargando = false;
   $scope.Registrar = function (){
     $scope.mensajeLogin.ver = false;
+    $scope.cargando = true;
     try
     {
       firebase.auth().createUserWithEmailAndPassword($scope.login.usuario, $scope.login.clave)
@@ -168,8 +219,19 @@ angular.module('starter.controladorLogin', [])
         }).then( function(resultado){
           firebase.auth().currentUser.updateProfile({
             displayName: $scope.login.nombre,
-          }).then(function() {  
+          }).then(function() { 
 
+            Servicio.Cargar('/usuario/' + usuario.displayName).on('value',
+              function(respuesta) {
+                FactoryUsuario.Logueado = respuesta.val();
+              },
+              function(error) {
+                // body...
+              }
+
+            );
+
+            $state.go("login");
           }, function(error) {
             // An error happened.
           });
@@ -186,8 +248,8 @@ angular.module('starter.controladorLogin', [])
                 break;
 
             }
-            console.info(error.code);
-          });
+            $scope.cargando = false;
+          }, 1000);
       });
     }
     catch (error)
@@ -195,6 +257,7 @@ angular.module('starter.controladorLogin', [])
       $scope.mensajeLogin.mensaje = "Ha ocurrido un error.";
       $scope.mensajeLogin.ver = true;
       $scope.mensajeLogin.estilo = "alert-danger";
+      $scope.cargando = false;
       console.info("Ha ocurrido un error en Registrar(). " + error);
     }
   };

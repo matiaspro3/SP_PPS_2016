@@ -1,0 +1,16 @@
+<ion-view view-title="Estadísticas">
+	<ion-content>
+		<div class="padding">
+			<div class="button-bar">
+				<button class="button button-balanced" style="margin-right:2%" ng-click="CantidadAccidentesTotal()" ><i class="ion-stats-bars"></i>Totales</button>
+				<button class="button button-balanced" style="margin-right:2%" ng-click="CantidadAccidentesHoy()" ><i class="ion-stats-bars"></i>Total Hoy</button>
+			</div>
+		</div>
+		<div id="divGraficos" style="width:100%; height:400px;"></div>
+		<div class="overlay" ng-show="cargando">
+	      <div class="overlayContent">
+	        <ion-spinner icon="circles"></ion-spinner><span style="font-size:26px; color:#000000">Cargando..</span>
+	      </div>
+	    </div>
+	</ion-content>
+</ion-view>

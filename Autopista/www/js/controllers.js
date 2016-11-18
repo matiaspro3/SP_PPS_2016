@@ -1,24 +1,16 @@
 angular.module('starter.controllers', [])
 
 .controller('menuCtrl', function($scope, $ionicModal, $timeout, $state, Servicio, FactoryUsuario) {
-  try
-  {
-    if (firebase.auth().currentUser != null)
+    try
     {
-      $timeout(function(){
+  
+    
         $scope.usuario = FactoryUsuario.Logueado;
-      });
-    }
-    else
+  }
+   catch (error)
     {
-      $state.go("app.inicio");
+      console.info("Ha ocurrido un error en Deslogueo(). " + error);
     }
-  }
-  catch (error)
-  {
-    console.info("Ha ocurrido un error en Deslogueo(). " + error);
-  }
-
   $scope.Deslogear = function (){
     try
     {

@@ -4,8 +4,8 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic','starter.servicio','starter.services','starter.pushNotification', 'starter.controllers', 'starter.controladorMapaAccidentes', 
-  'starter.controladorLogin','starter.controladorGraficos','starter.controladorEncuesta', 'starter.controladorGrilla','starter.controladorAltaAccidente', 'ngCordova', 'firebase'])
+angular.module('starter', ['ionic','starter.servicio','starter.services','starter.pushNotification','starter.pushNotification', 'starter.controllers', 'starter.controladorMapaAccidentes', 
+  'starter.controladorLogin','starter.factoryUsuario','starter.controladorGraficos','starter.controladorEncuesta', 'starter.controladorGrilla','starter.controladorAltaAccidente', 'ngCordova', 'firebase'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -28,26 +28,31 @@ angular.module('starter', ['ionic','starter.servicio','starter.services','starte
 
     .state('app', {
     url: '/app',
+      cache : false,
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'menuCtrl'
   })
-.state('app.inicio', {
+.state('inicio', {
     url: '/inicio',
+    templateUrl: 'templates/inicio.html'
+      
+    
+  })
+
+.state('app.perfil', {
+    url: '/perfil',
     views: {
       'menuContent': {
-        templateUrl: 'templates/inicio.html'
+        templateUrl: 'templates/perfil.html'
       }
     }
   })
-
   .state('app.mapaAccidentes', {
-      url: '/MapaAccidentes/:longitud/:latitud',
+      url: '/MapaAccidentes/:accidente',
       cache : false,
       views: {
-        params: [
-     'latitud', 'longitud'
-  ],
+        
         'menuContent': {
           templateUrl: 'templates/MapaAccidentes.html',
           controller: 'MapaCtrl'
@@ -116,5 +121,5 @@ angular.module('starter', ['ionic','starter.servicio','starter.services','starte
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('app/inicio');
+  $urlRouterProvider.otherwise('inicio');
 });

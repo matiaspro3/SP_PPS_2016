@@ -1,44 +1,49 @@
-<ion-view view-title="Login">
-  <ion-content>
-   <form>
-      <div class="list" ng-if="logueado == 'no'">
-        <label class="item item-input">
-          <span class="input-label">Correo</span>
-          <input type="text" ng-model="login.usuario">
-        </label>
-        <label class="item item-input">
-          <span class="input-label">Contraseña</span>
-          <input type="password" ng-model="login.clave">
-        </label>
-        <div class="padding">
-          <button class="button button-block button-positive" ng-click="Logear()" >Ingresar</button>
-          <p class="text-center text-muted">
-            <small><a ng-click="Resetear()">Olvide mi contraseña</a></small>
-          </p>
-          <p class="text-center text-muted">
-            <small>No tienes una cuenta? <a ui-sref="registro">Registrate</a></small>
-          </p>
-        </div>
-        <div class="padding">
-          <div class="{{mensajeLogin.estilo}}" ng-if="mensajeLogin.ver" style="text-align:center">
-            <span class="input-label" style="font-size: 16px; width: 100%; max-width: 100%;">{{mensajeLogin.mensaje}}</span>
-          </div>
+<ion-view hide-nav-bar="true" view-title="Login">
+  <ion-header-bar class="bar bar-deepblue bar-deepblue-borderbottom">
+    <button ui-sref="app.inicio" class="button button-clear button-deepblue-white"><i class="white-color ion-arrow-left-c"></i></button>
+    <h2 class="title">Login</h2>
+  </ion-header-bar>
+  <ion-content class="has-header has-footer padding full-height text-center">
+    <h3 class="sans-pro-light" ng-if="logueado == 'no'">Ingrese sus datos</h3>
+    <div class="list" ng-if="logueado == 'no'">
+      <label class="item item-input">
+        <span class="input-label" style="color: blue;font-weight: 900;">Correo</span>
+        <input type="text" ng-model="login.usuario">
+      </label>
+      <label class="item item-input">
+        <span class="input-label"style="color: blue;font-weight: 900;">Contraseña</span>
+        <input type="password" ng-model="login.clave">
+      </label>
+      <div class="padding">
+        <button class="button button-block button-positive" ng-show="!cargando" ng-click="Logear()" >Ingresar</button>
+      </div>
+      <div class="padding">
+        <div class="{{mensajeLogin.estilo}}" ng-if="mensajeLogin.ver" style="text-align:center">
+          <span class="input-label" style="font-size: 16px; color: yellow; width: 100%; max-width: 100%;">{{mensajeLogin.mensaje}}</span>
         </div>
       </div>
-      <div class="list" ng-if="logueado == 'si'">
-        <div class="padding">
-          <div class="alert-success" ng-if="verificado == 'no' && !cartelVerificar">
-            <p style="font-size: 16px;">Todavía no has verificado tu cuenta, <br><small><a ng-click="VerificarMail()">haz click aqui</a></small> para recibir el mail.</p>
-          </div>
-          <div class="alert-success" ng-if="verificado == 'no' && cartelVerificar">
-            <p style="font-size: 16px;">Email enviado.</p>
-          </div>
-          <div class="alert-success">
-            <p style="font-size: 16px;">¿Confirma que quiere salir?</p>
-            <button class="button button-block button-positive" ng-click="Deslogear()" >Salir</button>
-          </div>
+    </div>
+    <div class="list" ng-if="logueado == 'si'">
+      <div class="padding">
+        <div class="alert-success" ng-if="verificado == 'no' && !cartelVerificar">
+          <p style="font-size: 16px;color: yellow;">Todavía no has verificado tu cuenta, <br><a ng-click="VerificarMail()" style="font-size: 15px; color:#fff">haz click aqui</a> para recibir el mail.</p>
+        </div>
+        <div class="alert-success" ng-if="verificado == 'no' && cartelVerificar">
+          <p style="font-size: 16px;color: yellow;">Email enviado.</p>
+        </div>
+        <div class="alert-success">
+          <p style="font-size: 16px;color: yellow;">¿Confirma que quiere salir?</p>
+          <button class="button button-block button-positive" ng-click="Deslogear()" >Salir</button>
         </div>
       </div>
-    </form>
+    </div>
+    <div class="overlay" ng-show="cargando">
+      <div class="overlayContent">
+        <ion-spinner icon="circles"></ion-spinner><span style="font-size:26px; color:#000000">Ingresando..</span>
+      </div>
+    </div>
   </ion-content>
+  <ion-footer-bar class="bar bar-deepblue bar-deepblue-bordertop pointer" ng-click="Resetear()">
+    <h1 class="title sans-pro-light"  style="text-align:center">Olvide mi contraseña</h1>
+  </ion-footer-bar>
 </ion-view>
