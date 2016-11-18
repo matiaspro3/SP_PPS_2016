@@ -1,74 +1,120 @@
-# SP_PPS_2016
-Segundo parcial
 
-***** ID  IONIC......FDD1CCB0....
+### SP_PPS_2016
+<br>	
 
-***** URL FIRE.......https://autopista-b6678.firebaseapp.com/  
+##Segundo parcial
+
+<br>	
+
+
+
+
+#AUTOPISTA LOS BORBOTONES.
+
+<br>	
+
+
+
+
+
+![picture alt](Autopista/www/img/autopista.png "Autopista Bobotones")
+
+<br>	
+
+
+
+* ID  IONIC......FDD1CCB0....
+<br>	
+
+  
+* [FIREBASE](https://autopista-b6678.firebaseapp.com/)
+<br>	
+<br>	
+
+<img src="Autopista/www/img/averia.png" align="left" />
+<br>	
+<br>	
 
 
 
 #	INTEGRANTES.
+<br>	
 
-   * Matias De Salvo.
-   * Matias Mirotta
-   * Leandro Baldassarre
-   * Hernan Blanco
-   * Horacio Dillon 
-   * Pablo Igoldi	
-  
+    Integrante      |     GitHub
+--------------------| -----------------
+Matias Mirotta      | [M. Mirotta](https://github.com/mmirotta)
+Hernan Blanco       | [H. Blanco](https://github.com/hernanblanco073)
+Leandro Baldassarre | [L. Baldassarre](https://github.com/dockenzen)
+Matias De Salvo	    | [M. De Salvo](https://github.com/matiaspro3)
+Horacio Dillon      | [H. Dillon](https://github.com/hdillon)
+Pablo Igoldi	    | [P. Igoldi](https://github.com/pabloigoldi)
+
+<br>	
+<br>	
+
+<img src="Autopista/www/img/accidenteauto.png" align="center" />
+
+
+<br>	
 
 # DETALLES TECNICOS.
 
+<br>	
 
-#	Matias De Salvo
+#   Matias De Salvo
 
-	Lider Tecnico.
+ ```diff
 
-	Administracion.
+-	Lider Tecnico.
 
-	Dependencias.
++	Administracion.
 
-	Desarrollo Generico.
+-	Dependencias.
 
-	Servicios. 
++   Desarrollo Generico.
 
-	Plugin.
+-	Servicios. 
 
-	Estilos.
++	Plugin.
 
+-	Estilos.
+
+```
+
+   
 
 		
 #	Matias Mirotta
 
    * Tareas a Realizar al 5/11
 
-	Login Firebase (sin popup).
-	Alta y Baja de user, dentro de los datos, guardar los reclamos que realice.
-	Verificacion del email.
-	Reset pass.
-	Logout.
+- [x]	Login Firebase (sin popup).
+- [x]	Alta y Baja de user, dentro de los datos, guardar los reclamos que realice.
+- [x]	Verificacion del email.
+- [x]	Reset pass.
+- [x]	Logout.
 
    * Tareas a Realizar al 12/11
 
-	Administrar perfiles.
-	Graficos estadisticos con  cant de accidentes totales.
-	Graficos estadisticos con  cant de accidentes por dia. 
-	Agregar los estilos marcados por el Lider de equipo.
+- [x]	Administrar perfiles.
+- [x]	Graficos estadisticos con  cant de accidentes totales.
+- [x]	Graficos estadisticos con  cant de accidentes por dia. 
+- [x]	Agregar los estilos marcados por el Lider de equipo.
 
 
 
 #	Leandro Baldassarre
 
-   * Tareas a Realizar al 5/11.
+  * Tareas a Realizar al 5/11.
 
-	Alta Accidente (usuario,Tipo,comentario,geo,fecha)
+- [x]	Alta Accidente (usuario,Tipo,comentario,geo,fecha)
 
    * Tareas a Realizar al 12/11.
 
-	modificar alta para apuntar a serv fare, 
-	Agregar nuevo parametro activo = true.
-	Guardar el objeto user en el alta de accidente.
-	Agregar estilos con  movimientos.
+- [x]	modificar alta para apuntar a serv fare, 
+- [x]	Agregar nuevo parametro activo = true.
+- [x]	Guardar el objeto user en el alta de accidente.
+- [x]	Agregar estilos con  al popUp.
 
 
 
@@ -76,29 +122,29 @@ Segundo parcial
 
    * Tareas a Realizar al 5/11.
 
-	Listado con Accidentes - acceso a mapas.
-	Diseño grilla.
-	Acceso accidente mapa.
-	Centrado de vista en accidente seleccionado.
+- [x]	Listado con Accidentes - acceso a mapas.
+- [x]	Diseño grilla.
+- [x]	Acceso accidente mapa.
+- [x]	Centrado de vista en accidente seleccionado.
 
 	* Tareas a Realizar al 12/11.
 
-	Modificar leyenda mostrada.
-	Borrar accidente segun perfil admin/opera.
-	Agregar estilos con  movimientos.
+- [x]	Modificar leyenda mostrada.
+- [x]	Borrar accidente segun perfil admin/opera.
+- [x]	Agregar estilos con  movimientos.
 
 
 #	Horacio Dillon 
 
    * Tareas a Realizar al 5/11.
 
-	Mapa  integral de accidentes.
-	Markers.
+- [x]	Mapa  integral de accidentes.
+- [x]	Markers.
 
    * Tareas a Realizar al 12/11.
 
-	Agregar estilos segun tipo accidente (marca de mapa).
-	Push notification al realizar alta de accidente.
+- [x]	Agregar estilos segun tipo accidente (marca de mapa).
+- [x]	Push notification al realizar alta de accidente.
 
 
 #  Pablo Igoldi	
@@ -108,14 +154,14 @@ Segundo parcial
 
    * Tareas a Realizar al 12/11.
 
-	Encuesta del servicio con minimo 5 preguntas con check/combo.
-	Campo no obligatorio de sugerencia.
-	Lineas de puntuacion.
+- [x]	Encuesta del servicio con minimo 5 preguntas con check/combo.
+- [x]	Campo no obligatorio de sugerencia.
+- [x]	Lineas de puntuacion.
 	
 
 # 	Temas Pendientes.
 11/11.
-M. Mirotta......Los graficos quedaron excelentes, solo tunear un poco mas la vista de seleccion de tipo.No esta tomando los perfiles. Le saque en ngif al menu para q por lo menos figure la opcion de graficos.
+M. Mirotta......Los graficos quedaron excelentes, solo tunear un poco mas la vista de seleccion de tipo.No esta tomando los perfiles.
 
 P Igoldi........Esta en blanco la encuesta. Si podes comenzala con algo basico para presentar mañana.
 
