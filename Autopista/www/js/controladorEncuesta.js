@@ -12,23 +12,39 @@ angular.module('starter.controladorEncuesta', [])
     $scope.encuesta.respuestas.loRecomendaria = "";
     $scope.encuesta.respuestas.sugerencia = "";
 
-    //$scope.encuesta.fecha = Date();
+    $scope.encuestaInvisible = true;
+    $scope.preguntaInvisible = false;
+    $scope.encuesta.fecha = Date();
     $scope.encuesta.usuario = FactoryUsuario.Logueado;
  
     $scope.guardarEncuesta=function(){    
         try{
-            console.log($scope.encuesta);
-            Servicio.Guardar("Encuestas/" + $scope.encuesta.usuario.nombre +"/" + String($scope.encuesta.fecha) +"/" ,$scope.encuesta);
-          firebase.auth().signOut().catch(function (error){
-              console.info("Ha ocurrido un error en la encuesta. " + error);
+         
+           Servicio.Guardar("Encuestas/" + $scope.encuesta.usuario.nombre +"/" + String($scope.encuesta.fecha) +"/" ,$scope.encuesta.respuestas);
+           //console.log("Encuestas/" + $scope.encuesta.usuario.nombre +"/" + String($scope.encuesta.fecha) +"/" ,$scope.encuesta.respuestas);
+            firebase.auth().signOut().catch(function (error){
+          
               }).then( function(resultado){
+               // console.log( "salio!");
                  ionic.Platform.exitApp();
-                  //$state.go("app.inicio");
+               
           });
         }catch(error)
       {
           console.info("Ha ocurrido un error en la encuesta. " + error);
       }
     }
+
+    $scope.salir=function(){   
+         console.log( "salio!"); 
+         //ionic.Platform.exitApp();
+    }
+
+    $scope.irEncuesta=function(){    
+          $scope.encuestaInvisible = false;
+          $scope.preguntaInvisible = true;
+    }
+
+    
 
 });
