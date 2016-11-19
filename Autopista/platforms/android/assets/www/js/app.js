@@ -31,7 +31,7 @@ angular.module('starter', ['ionic','starter.servicio','starter.services','starte
       cache : false,
     abstract: true,
     templateUrl: 'templates/menu.html',
-    controller: 'menuCtrl'
+   controller: 'menuCtrl'
   })
 .state('inicio', {
     url: '/inicio',
@@ -44,7 +44,8 @@ angular.module('starter', ['ionic','starter.servicio','starter.services','starte
     url: '/perfil',
     views: {
       'menuContent': {
-        templateUrl: 'templates/perfil.html'
+        templateUrl: 'templates/perfil.html',
+          controller: 'menuCtrl'
       }
     }
   })

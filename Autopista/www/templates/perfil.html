@@ -10,37 +10,41 @@
     </div>
 
     <label class="item item-input">
-      <span style="font-size: 16px;color: red;" class="input-label">Email</span>
+      <span style="font-size: 16px;color: red;; font-weight: 900" class="input-label">Email</span>
       <input style="font-size: 16px;color: blue;" type="text" ng-model="usuario.correo"  readonly >
     </label>
     <label class="item item-input">
-      <span style="font-size: 16px;color: red;" class="input-label">Nombre</span>
+      <span style="font-size: 16px;color: red;; font-weight: 900" class="input-label">Nombre</span>
       <input  style="font-size: 16px;color: blue;" type="text" ng-model="usuario.nombre" readonly>
     </label>
     <label class="item item-input">
-      <span style="font-size: 16px;color: red;" class="input-label">Tipo de Usuario</span>
+      <span style="font-size: 16px;color: red;; font-weight: 900" class="input-label">Tipo de Usuario</span>
       <input  style="font-size: 16px;color: blue;" type="text" ng-model="usuario.perfil"  readonly >
     </label>
 
 
-
+<br>
+<br>
+<br>
 
 
 <div class="CajaInicio  animated  slideInUp" ng-if="usuario.perfil=='admin'">
-              <center>
-              <h1  style="color:yellow;">Listado de Usuarios</h1>
+          
+              <h1  style="color:green;">Listado de Usuarios</h1>
               <!-- id="listaPersonas" -->
-                </center>
-                <table style="color:red;" class='table table-hover table-responsive ' id="listaPersonas">
+              <br>
+                
+                <table style="color:yellow; font-weight: 900;" class='table table-hover table-responsive ' id="listaPersonas">
                   <thead>
+   
                     <tr>
-                      <th>  Usuario   </th>       
-                      <th>  Correo     </th>
+                      <th>  Usuario  </th>       
+                      <th>  Correo   </th>
                       <th>  Tipo     </th>
                     </tr> 
                   </thead>
                   
-                  <tr ng-repeat="usuario in grilla" style="color:blue;">
+                  <tr ng-repeat="usuario in grilla" style="color:red; font-weight: 900;">
                   
                     <td>{{usuario.nombre}}</td>
                     <td>{{usuario.correo}}</td>

@@ -41,7 +41,7 @@ angular.module('starter.controladorAltaAccidente', [])
                       $scope.alta.longitud=position.coords.longitude;
                       if($scope.alta.usuario != "")
                       {                        
-                        $scope.showAlert("Accidente cargado", "Gracias por notificarlo");
+                        $scope.showAlerta("Accidente cargado", "Gracias por notificarlo");
                         //console.log($scope.alta);
                         Servicio.Guardar("/Accidentes/"+$scope.alta.usuario.nombre+$scope.alta.fecha+"/",$scope.alta);
                         PushNotificationService.enviarPushNotification($scope.alta);                      
@@ -66,7 +66,7 @@ angular.module('starter.controladorAltaAccidente', [])
          }
          else
          {
-           $state.go("app.inicio");
+           $scope.showAlertLog("Usted no está logueado. ","Por favor ingrese a su cuenta");              
          }
     }        
           
@@ -76,13 +76,46 @@ angular.module('starter.controladorAltaAccidente', [])
                     }, 3000);                  
              }
 
-          $scope.showAlert = function(problema,adicional) {
+          $scope.showAlerta = function(problema,adicional) {
            var alertPopup = $ionicPopup.alert({
              title: problema,
              template: adicional
            });
            alertPopup.then(function(res) {
-             console.log(res);
+             //console.log(res);
+            if(res)
+            {
+            $timeout(function() { 
+              $state.go('app.grilla');
+                }, 1500);                  
+            }
+           });
+        }
+  
+        $scope.showAlertLog = function(problema,adicional) {
+           var alertPopup = $ionicPopup.alert({
+             title: problema,
+             template: adicional
+           });
+           alertPopup.then(function(res) {
+             //console.log(res);
+            if(res)
+            {
+            $timeout(function() { 
+              $state.go("inicio");         
+                }, 100);                  
+            }
+           });
+        }
+
+
+        $scope.showAlert = function(problema,adicional) {
+           var alertPopup = $ionicPopup.alert({
+             title: problema,
+             template: adicional
+           });
+           alertPopup.then(function(res) {
+            console.log(res);            
            });
         }
 });
